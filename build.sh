@@ -54,4 +54,6 @@ cmake \
 
 make -j
 make mytest
-make package
+#make package
+
+./run.sh >0.txt 2>&1

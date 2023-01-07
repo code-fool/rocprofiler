@@ -132,6 +132,7 @@ hsa_status_t dispatch_callback(const rocprofiler_callback_data_t* callback_data,
   properties.handler_arg = (void*)strdup(callback_data->kernel_name);
 
   // Open profiling context
+  printf("!!!!!!!!rocprofiler_open这里是最早的地方！！！！\n");
   hsa_status_t status = rocprofiler_open(callback_data->agent, features, feature_count,
                                          &context, 0 /*ROCPROFILER_MODE_SINGLEGROUP*/, &properties);
   check_status(status);

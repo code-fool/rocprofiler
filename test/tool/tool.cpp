@@ -52,6 +52,21 @@ THE SOFTWARE.
 #include "util/hsa_rsrc_factory.h"
 #include "util/xml.h"
 
+
+#include "ctrl/run_kernel.h"
+#include "ctrl/test_aql.h"
+#include "ctrl/test_hsa.h"
+// #include "inc/rocprofiler.h"
+#include "dummy_kernel/dummy_kernel.h"
+#include "simple_convolution/simple_convolution.h"
+// #include "util/hsa_rsrc_factory.h"
+#include "util/test_assert.h"
+
+// #include <iostream>
+// #include <cstring>
+// #include <cstdlib>
+// #include<stdlib.h>
+
 #define PUBLIC_API __attribute__((visibility("default")))
 #define CONSTRUCTOR_API __attribute__((constructor))
 #define DESTRUCTOR_API __attribute__((destructor))
@@ -63,6 +78,26 @@ THE SOFTWARE.
   } while(0);
 #define ONLOAD_TRACE_BEG() ONLOAD_TRACE("begin")
 #define ONLOAD_TRACE_END() ONLOAD_TRACE("end")
+
+#define TEST_ASSERT(cond)                                                                          \
+  {                                                                                                \
+    if (!(cond)) {                                                                                 \
+      std::cerr << "Assert failed(" << #cond << ") at " << __FILE__ << ", line " << __LINE__       \
+                << std::endl;                                                                      \
+      exit(-1);                                                                                    \
+    }                                                                                              \
+  }
+#define TEST_STATUS(cond)                                                                          \
+  {                                                                                                \
+    if (!(cond)) {                                                                                 \
+      std::cerr << "Test error at " << __FILE__ << ", line " << __LINE__ << std::endl;             \
+      const char* message;                                                                         \
+      rocprofiler_error_string(&message);                                                          \
+      std::cerr << "ERROR: " << message << std::endl;                                              \
+      exit(-1);                                                                                    \
+    }                                                                                              \
+  }  
+
 
 // Disoatch callback data type
 struct callbacks_data_t {
@@ -79,6 +114,7 @@ struct callbacks_data_t {
 
 // kernel properties structure
 struct kernel_properties_t {
+  //要在这里面加东西的
   uint32_t grid_size;
   uint32_t workgroup_size;
   uint32_t lds_size;
@@ -340,23 +376,29 @@ unsigned align_size(unsigned size, unsigned alignment) {
 
 // Output profiling results for input features
 void output_results(const context_entry_t* entry, const char* label) {
+  
   FILE* file = entry->file_handle;
   const rocprofiler_feature_t* features = entry->features;
   const unsigned feature_count = entry->feature_count;
-
+  
+  printf("经过1--feature==%d\n",feature_count);
   for (unsigned i = 0; i < feature_count; ++i) {
     const rocprofiler_feature_t* p = &features[i];
     fprintf(file, "  %s ", p->name);
+    printf("output_results::  %s ", p->name);
     switch (p->data.kind) {
       // Output metrics results
       case ROCPROFILER_DATA_KIND_INT64:
         fprintf(file, "(%lu)\n", p->data.result_int64);
+        printf("(%lu)\n", p->data.result_int64);
         break;
       case ROCPROFILER_DATA_KIND_DOUBLE:
         fprintf(file, "(%.10lf)\n", p->data.result_double);
+        printf("(%.10lf)\n", p->data.result_double);
         break;
       default:
         fprintf(stderr, "RPL-tool: undefined data kind(%u)\n", p->data.kind);
+        printf("RPL-tool: undefined data kind(%u)\n", p->data.kind);
         abort();
     }
   }
@@ -393,11 +435,34 @@ bool dump_context_entry(context_entry_t* entry, bool to_clean = true) {
   ++context_collected;
 
   const uint32_t index = entry->index;
+  printf("index==%d",index);
   if (index != UINT32_MAX) {
+    printf("经过2\n");
     FILE* file_handle = entry->file_handle;
     const std::string nik_name = (to_truncate_names == 0) ? entry->data.kernel_name : filtr_kernel_name(entry->data.kernel_name);
     const AgentInfo* agent_info = HsaRsrcFactory::Instance().GetAgentInfo(entry->agent);
 
+    printf("dispatch[%u], gpu-id(%u), queue-id(%u), queue-index(%lu), pid(%u), tid(%u), grd(%u), wgr(%u), lds(%u), scr(%u), arch_vgpr(%u), accum_vgpr(%u), sgpr(%u), wave_size(%u), sig(0x%lx), obj(0x%lx), kernel-name(\"%s\")",
+      index,
+      agent_info->dev_index,
+      entry->data.queue_id,
+      entry->data.queue_index,
+      my_pid,
+      entry->data.thread_id,
+      entry->kernel_properties.grid_size,
+      entry->kernel_properties.workgroup_size,
+      (entry->kernel_properties.lds_size + (AgentInfo::lds_block_size - 1)) & ~(AgentInfo::lds_block_size - 1),
+      entry->kernel_properties.scratch_size,
+      entry->kernel_properties.arch_vgpr_count,
+      entry->kernel_properties.accum_vgpr_count,
+      entry->kernel_properties.sgpr_count,
+      entry->kernel_properties.wave_size,
+      entry->kernel_properties.signal.handle,
+      entry->kernel_properties.object,
+      nik_name.c_str());
+    
+
+    printf("经过3\n");
     fprintf(file_handle, "dispatch[%u], gpu-id(%u), queue-id(%u), queue-index(%lu), pid(%u), tid(%u), grd(%u), wgr(%u), lds(%u), scr(%u), arch_vgpr(%u), accum_vgpr(%u), sgpr(%u), wave_size(%u), sig(0x%lx), obj(0x%lx), kernel-name(\"%s\")",
       index,
       agent_info->dev_index,
@@ -421,6 +486,7 @@ bool dump_context_entry(context_entry_t* entry, bool to_clean = true) {
       record->begin,
       record->end,
       record->complete);
+    printf("经过4\n");  
     fprintf(file_handle, "\n");
     fflush(file_handle);
   }
@@ -454,6 +520,7 @@ bool dump_context_entry(context_entry_t* entry, bool to_clean = true) {
 
 // Wait for and dump all stored contexts for a given queue if not NULL
 void dump_context_array(hsa_queue_t* queue) {
+  printf("dump_context_array进来了\n");
   bool done = false;
   while (done == false) {
     done = true;
@@ -465,13 +532,18 @@ void dump_context_array(hsa_queue_t* queue) {
     if (context_array) {
       auto it = context_array->begin();
       auto end = context_array->end();
+      printf("dump_context_array进来了22222\n");
       while (it != end) {
+        printf("卡点1\n");
         auto cur = it++;
         context_entry_t* entry = &(cur->second);
         volatile std::atomic<bool>* valid = reinterpret_cast<std::atomic<bool>*>(&entry->valid);
         while (valid->load() == false) sched_yield();
         if ((queue == NULL) || (entry->data.queue == queue)) {
-          if (entry->active == true) {
+
+          printf("卡点2\n");
+          if (entry->active == true) {            
+            printf("卡点3\n");
             if (dump_context_entry(&(cur->second)) == false) done = false;
             else entry->active = false;
           }
@@ -530,7 +602,7 @@ bool context_pool_handler(const rocprofiler_pool_entry_t* entry, void* arg) {
   ctx_entry->feature_count = handler_arg->feature_count;
   ctx_entry->data.kernel_name = ctx_entry->kernel_name_it->second.name;
   ctx_entry->file_handle = result_file_handle;
-
+  printf("经过5\n");
   if (pthread_mutex_lock(&mutex) != 0) {
     perror("pthread_mutex_lock");
     abort();
@@ -729,23 +801,79 @@ void set_kernel_properties(const rocprofiler_callback_data_t* callback_data,
                                                       AMD_KERNEL_CODE_PROPERTY_ENABLE_WAVEFRONT_SIZE32) ? 32 : 64;
   kernel_properties_ptr->signal = callback_data->completion_signal;
   kernel_properties_ptr->object = callback_data->packet->kernel_object;
+  //要在这里加东西？？？
 }
 
-// Kernel disoatch callback
+// print profiler features
+void print_features(rocprofiler_feature_t* feature, uint32_t feature_count) {
+    for (rocprofiler_feature_t* p = feature; p < feature + feature_count; ++p) {
+      std::cout << (p - feature) << ": " << p->name;
+      switch (p->data.kind) {
+        case ROCPROFILER_DATA_KIND_INT64:
+        // 1
+          std::cout << std::dec << " 0000result64 (" << p->data.result_int64 << ")" << std::endl;
+          break;
+        case ROCPROFILER_DATA_KIND_DOUBLE:
+        // 2
+          std::cout << " 1111result64 (" << p->data.result_double << ")" << std::endl;
+          break;
+        case ROCPROFILER_DATA_KIND_BYTES: {
+          const char* ptr = reinterpret_cast<const char*>(p->data.result_bytes.ptr);
+          uint64_t size = 0;
+          for (unsigned i = 0; i < p->data.result_bytes.instance_count; ++i) {
+            size = *reinterpret_cast<const uint64_t*>(ptr);
+            const char* data = ptr + sizeof(size);
+            std::cout << std::endl;
+            std::cout << std::hex << "  data (" << (void*)data << ")" << std::endl;
+            std::cout << std::dec << "  size (" << size << ")" << std::endl;
+            ptr = data + size;
+          }
+          break;
+        }
+        default:
+          std::cout << "result kind (" << p->data.kind << ")" << std::endl;
+          TEST_ASSERT(false);
+      }
+    }
+}
+
+
+void read_features(uint32_t n, rocprofiler_t* context, rocprofiler_feature_t* feature, const unsigned feature_count) {
+    std::cout << "read features" << std::endl;
+    printf("n==%d\n",n);
+    hsa_status_t status = rocprofiler_read(context, n);
+    TEST_STATUS(status == HSA_STATUS_SUCCESS);
+    std::cout << "read issue" << std::endl;
+    status = rocprofiler_get_data(context, n);
+    TEST_STATUS(status == HSA_STATUS_SUCCESS);
+    status = rocprofiler_get_metrics(context);
+    TEST_STATUS(status == HSA_STATUS_SUCCESS);
+    print_features(feature, feature_count);
+}
+
+
+
+// Kernel disoatch callback 内核超时回调
 hsa_status_t dispatch_callback(const rocprofiler_callback_data_t* callback_data, void* user_data,
                                rocprofiler_group_t* group) {
+  printf("正式进来dispatch!!!!!!!!\n");
   // Passed tool data
   callbacks_data_t* tool_data = reinterpret_cast<callbacks_data_t*>(user_data);
   // HSA status
   hsa_status_t status = HSA_STATUS_ERROR;
 
-  // Checking dispatch condition
-  if (tool_data->filter_on == 1) {
-    if (check_filter(callback_data, tool_data) == false) {
-      next_context_count();
-      return HSA_STATUS_SUCCESS;
-    }
-  }
+  // // Checking dispatch condition x先砍了 看看效果···
+  // if (tool_data->filter_on == 1) {
+  //   if (check_filter(callback_data, tool_data) == false) {
+  //     next_context_count();
+  //     printf("正式进来dispatch0000000\n");
+  //     return HSA_STATUS_SUCCESS;
+  //   }
+  // }
+
+
+
+
   // Profiling context
   // Context entry
   context_entry_t* entry = alloc_context_entry();
@@ -760,6 +888,7 @@ hsa_status_t dispatch_callback(const rocprofiler_callback_data_t* callback_data,
   rocprofiler_feature_t* features = tool_data->features;
   unsigned feature_count = tool_data->feature_count;
 
+  printf("正式进来dispatch1111111--feature_count==%d features[0].name==%s\n",feature_count,features[0].name);
   if (tool_data->set != NULL) {
     uint32_t set_offset = 0;
     uint32_t next_offset = 0;
@@ -775,13 +904,78 @@ hsa_status_t dispatch_callback(const rocprofiler_callback_data_t* callback_data,
     feature_count = next_offset - set_offset;
   }
 
+
+  // // Profiling feature objects
+  // // const unsigned feature_count = 6;
+  // const unsigned feature_count = 11;
+  // // const unsigned feature_count = 30;
+  // rocprofiler_feature_t feature[feature_count];
+  // // PMC events
+  // memset(feature, 0, sizeof(feature));
+  // feature[0].kind = ROCPROFILER_FEATURE_KIND_METRIC;
+  // feature[0].name = "GRBM_COUNT";
+  // // 高计数时钟数量
+  // feature[1].kind = ROCPROFILER_FEATURE_KIND_METRIC;
+  // feature[1].name = "GRBM_GUI_ACTIVE";//这个是啥 活跃的gui数量吗？？？
+  // feature[2].kind = ROCPROFILER_FEATURE_KIND_METRIC;
+  // // name="GPUBusy"
+  // //   descr="The percentage of time GPU was busy."  GPU繁忙的时间百分比
+  // //   expr=100*GRBM_GUI_ACTIVE/GRBM_COUNT
+  // feature[2].name = "GPUBusy";
+  // feature[3].kind = ROCPROFILER_FEATURE_KIND_METRIC;
+  // feature[3].name = "SQ_WAVES";//发送到SQs的波(warp)的计数
+  // feature[4].kind = ROCPROFILER_FEATURE_KIND_METRIC;
+  // feature[4].name = "SQ_INSTS_VALU";//发出的VALU指令数，不包括跳过的指令
+  // feature[5].kind = ROCPROFILER_FEATURE_KIND_METRIC;
+  // // 每个工作项(线程)执行的矢量ALU指令的平均数量(受flow流控制影响)。
+  // // expr=SQ_INSTS_VALU/SQ_WAVES
+  // feature[5].name = "VALUInsts";
+
+  // feature[6].kind = ROCPROFILER_FEATURE_KIND_METRIC;
+  // // feature[6].name = "TCC_HIT_sum";
+  // // feature[6].name = "GRBM_CP_BUSY";
+  // feature[6].name = "SALUInsts";
+
+  // feature[7].kind = ROCPROFILER_FEATURE_KIND_METRIC;
+  // // // feature[7].name = "TCC_MISS_sum";
+  // // feature[7].name = "GRBM_GDS_BUSY";
+  // feature[7].name = "SFetchInsts";
+
+  // feature[8].kind = ROCPROFILER_FEATURE_KIND_METRIC;
+  // // feature[8].name = "WRITE_SIZE";
+  // // feature[8].name = "GL2C_MISS";
+  // feature[8].name = "GDSInsts";
+  // feature[9].kind = ROCPROFILER_FEATURE_KIND_METRIC;
+  // // feature[8].name = "TCC_EA_WRREQ_sum";
+  // // feature[9].name = "GL2C_MC_WRREQ_STALL";
+  // feature[9].name = "MemUnitBusy";
+  // // // feature[9].kind = ROCPROFILER_FEATURE_KIND_METRIC;
+  // // // // feature[9].name = "TCC_EA_WRREQ_64B_sum";
+  // // // feature[9].name = "GL2C_EA_WRREQ_64B";
+
+
+  // feature[10].kind = ROCPROFILER_FEATURE_KIND_METRIC;
+  // feature[10].name = "ALUStalledByLDS";
+
+
+  // // feature[11].kind = ROCPROFILER_FEATURE_KIND_METRIC;
+  // // // feature[11].name = "LDSBankConflict";
+  // // // feature[11].name = "CP_UTIL";
+  // // // feature[11].name = "WAVE_ISSUE_WAIT";
+  // // // 每个工作项(线程)执行到显存的矢量写入指令的平均数量(受流控制影响)。排除写入显存的FLAT指令。
+  // // // feature[11].name = "VWriteInsts";虽然可以是对的 但是会导致很多的其他的报错···要很慎重才行···
+  // // // feature[11].name = "VALUBusy";ok
+  // // feature[11].name = "SALUBusy";
+  
+
   // Open profiling context
   rocprofiler_t* context = NULL;
+  printf("你是打算要吓死我？？？？--feature_count==%d\n",feature_count);
   status = rocprofiler_open(callback_data->agent, features, feature_count,
                             &context, 0 /*ROCPROFILER_MODE_SINGLEGROUP*/, &properties);
   check_status(status);
 
-  // Check that we have only one profiling group
+    // Check that we have only one profiling group
   uint32_t group_count = 0;
   status = rocprofiler_group_count(context, &group_count);
   check_status(status);
@@ -791,12 +985,26 @@ hsa_status_t dispatch_callback(const rocprofiler_callback_data_t* callback_data,
   status = rocprofiler_get_group(context, group_index, group);
   check_status(status);
 
+  // const unsigned group_n = 0;
+  // // status = rocprofiler_start(context, group_n);
+  // status = rocprofiler_start0(context, group_n);
+  // // status = rocprofiler_start(context, group_count);
+  // // TEST_STATUS(status == HSA_STATUS_SUCCESS);
+  // check_status(status);
+  // std::cout << "hhhhhhhhhstart" << std::endl;
+
+  // // //这个有待观察··· 看看吧···
+  // read_features(group_index, context, features, feature_count);
+
+
   // Fill profiling context entry
   entry->agent = callback_data->agent;
   entry->group = *group;
   entry->features = features;
+  // entry->features = feature;
   entry->feature_count = feature_count;
   entry->file_handle = tool_data->file_handle;
+  printf("经过6\n");
   entry->active = true;
   reinterpret_cast<std::atomic<bool>*>(&entry->valid)->store(true);
 
@@ -852,10 +1060,10 @@ static hsa_status_t info_callback(const rocprofiler_info_data_t info, void * arg
       fprintf(stdout, "\n  gpu-agent%d : %s : %s\n", info.agent_index, info.metric.name, info.metric.description);
       fprintf(stdout, "      %s = %s\n", info.metric.name, info.metric.expr);
     } else {
-      fprintf(stdout, "\n  gpu-agent%d : %s", info.agent_index, info.metric.name);
+      fprintf(stdout, "\n  hhhhhhhhgpu-agent%d : %s", info.agent_index, info.metric.name);
       if (info.metric.instances > 1) fprintf(stdout, "[0-%u]", info.metric.instances - 1);
       fprintf(stdout, " : %s\n", info.metric.description);
-      fprintf(stdout, "      block %s has %u counters\n", info.metric.block_name, info.metric.block_counters);
+      fprintf(stdout, "      block9999999 %s has %u counters\n", info.metric.block_name, info.metric.block_counters);
     }
     fflush(stdout);
   }
@@ -1116,6 +1324,7 @@ extern "C" PUBLIC_API void OnLoadToolProp(rocprofiler_settings_t* settings)
 
   // Set output file
   result_prefix = getenv("ROCP_OUTPUT_DIR");
+  
   if (result_prefix != NULL) {
     DIR* dir = opendir(result_prefix);
     if (dir == NULL) {
@@ -1126,6 +1335,7 @@ extern "C" PUBLIC_API void OnLoadToolProp(rocprofiler_settings_t* settings)
     }
     std::ostringstream oss;
     oss << result_prefix << "/" << GetPid() << "_results.txt";
+    std::cout<<"看看result_prefix=="<<result_prefix<<std::endl;
     result_file_handle = fopen(oss.str().c_str(), "w");
     if (result_file_handle == NULL) {
       std::ostringstream errmsg;
@@ -1137,23 +1347,49 @@ extern "C" PUBLIC_API void OnLoadToolProp(rocprofiler_settings_t* settings)
 
   result_file_opened = (result_prefix != NULL) && (result_file_handle != NULL);
 
+  // // char str[5] = "cat ";
+  // char str[5] = "ls ";
+  // char *name = (char *) malloc(strlen(str) + strlen(result_prefix));
+  // // 发送格式化输出到name指定的字符串
+  // sprintf(name, "%s%s", str, result_prefix); 
+  // // strcat(str,result_prefix);
+  // std::cout<<name<<std::endl;
+  // // strcat(str,"/results.txt");
+  // char str1[13] = "/results.txt";
+  // char *name1 = (char *) malloc(strlen(str1) + strlen(name));
+  
+  // sprintf(name1, "%s%s", name, str1);
+  // std::cout<<name1<<std::endl;
+  // // const char* name2 = name1;
+  // // std::cout<<name2<<std::endl;
+  // // int a = system(name2);
+  // int a = system(name);
+  // int b = system("cat input.txt");
+
+  // printf("ls最后睡15秒--%d--%d\n",a,b);
+  // sleep(15);
+
+
+
   // Getting input
   const char* xml_name = getenv("ROCP_INPUT");
   if (xml_name == NULL) fatal("ROCProfiler: input is not specified, ROCP_INPUT env");
-  printf("ROCProfiler: input from \"%s\"\n", xml_name);
+  printf("0000000000--ROCProfiler: input from \"%s\"\n", xml_name);
   xml::Xml* xml = xml::Xml::Create(xml_name);
   if (xml == NULL) {
     fprintf(stderr, "ROCProfiler: Input file not found '%s'\n", xml_name);
     abort();
   }
-
+  printf("Getting metrics\n");
   // Getting metrics
   std::vector<std::string> metrics_vec;
   get_xml_array(xml, "top.metric", "name", ",", &metrics_vec);
 
-  // Metrics set
+  // Metrics set 安心 大家都没有set的··· 都是0
   metrics_set = new std::vector<uint32_t>;
   get_xml_array(xml, "top.metric", "set", ",", metrics_set, "  ");
+
+  printf("Getting metrics--size==%ld\n",metrics_set->size());
   if (metrics_set->size() != 0) {
     uint32_t accum = 0;
     metrics_set->insert(metrics_set->begin(), 0);
@@ -1209,10 +1445,12 @@ extern "C" PUBLIC_API void OnLoadToolProp(rocprofiler_settings_t* settings)
 
   bool opt_mode_cond = ((features_found != 0) &&
                               (metrics_set->empty()) &&
+                              // (metrics_vec->empty()) &&
                               (filter_disabled == true));
   if (settings->opt_mode == 0) opt_mode_cond = false;
   if (!opt_mode_cond) settings->opt_mode = 0;
   if (opt_mode_cond) {
+    printf("进来opt_mode_cond\n");
     // Handler arg
     handler_arg_t* handler_arg = new handler_arg_t{};
     handler_arg->features = features;
@@ -1258,17 +1496,24 @@ extern "C" PUBLIC_API void OnLoadToolProp(rocprofiler_settings_t* settings)
     settings->code_obj_tracking = 0;
     settings->hsa_intercepting = 1;
   } else {
+    printf("nnnnnnnnnnn进来opt_mode_cond\n");//不走上面走这里
     // Adding dispatch observer
     rocprofiler_queue_callbacks_t callbacks_ptrs{0};
     callbacks_ptrs.dispatch = dispatch_callback;
     callbacks_ptrs.destroy = destroy_callback;
 
     callbacks_data = new callbacks_data_t{};
+    // features在这里就是0了？？？
     callbacks_data->features = features;
+    // printf("features-size==%d\n",features.);
     callbacks_data->feature_count = features_found;
+    
     callbacks_data->set = (metrics_set->empty()) ? NULL : metrics_set;
+    // callbacks_data->set = (metrics_vec->empty()) ? NULL : metrics_vec;
     callbacks_data->group_index = 0;
     callbacks_data->file_handle = result_file_handle;
+    printf("经过7--features_found==%d mmetrics_set->size()==%ld\n",features_found,metrics_set->size());
+    // printf("经过7--features_found==%d mmetrics_set->size()==%ld\n",features_found,metrics_vec->size());
     callbacks_data->gpu_index = (gpu_index_vec->empty()) ? NULL : gpu_index_vec;
     callbacks_data->kernel_string = (kernel_string_vec->empty()) ? NULL : kernel_string_vec;
     callbacks_data->range = (range_vec->empty()) ? NULL : range_vec;;
@@ -1276,12 +1521,13 @@ extern "C" PUBLIC_API void OnLoadToolProp(rocprofiler_settings_t* settings)
                                 (callbacks_data->kernel_string != NULL) ||
                                 (callbacks_data->range != NULL)
                                 ? 1 : 0;
-
+    // 在这里接数据callbacks_data 就是篮子
+    printf("在这里接数据callbacks_data 就是篮子\n");
     rocprofiler_set_queue_callbacks(callbacks_ptrs, callbacks_data);
   }
 
   xml::Xml::Destroy(xml);
-
+  printf("Destroy完成了\n");
   if (CTX_OUTSTANDING_MON != 0) {
     pthread_t thread;
     pthread_attr_t attr;
@@ -1290,13 +1536,15 @@ extern "C" PUBLIC_API void OnLoadToolProp(rocprofiler_settings_t* settings)
     err = pthread_create(&thread, &attr, monitor_thr_fun, NULL);
   }
 
+  printf("CTX_OUTSTANDING_MON完成了\n");
   ONLOAD_TRACE_END();
 }
 
 // Tool destructor
 void rocprofiler_unload(bool is_destr) {
   ONLOAD_TRACE("begin loaded(" << is_loaded << ") destr(" << is_destr << ")");
-
+  // printf("开始睡10秒\n");
+  // sleep(10);
   if (pthread_mutex_lock(&mutex) != 0) {
     perror("pthread_mutex_lock");
     abort();
@@ -1313,11 +1561,60 @@ void rocprofiler_unload(bool is_destr) {
 
   // Dump stored profiling output data
   fflush(stdout);
+  // printf("zai睡10秒\n");
+  // sleep(10);
   if (result_file_opened) {
-    printf("\nROCPRofiler:"); fflush(stdout);
+    printf("\n22222222222ROCPRofiler---%d===%d:",CTX_OUTSTANDING_WAIT,is_destr); fflush(stdout);
     if (CTX_OUTSTANDING_WAIT == 1) dump_context_array(NULL);
+
     fclose(result_file_handle);
+    char str[5] = "cat ";
+    char *name = (char *) malloc(strlen(str) + strlen(result_prefix));
+    // 发送格式化输出到name指定的字符串
+    sprintf(name, "%s%s", str, result_prefix); 
+    // strcat(str,result_prefix);
+    std::cout<<name<<std::endl;
+    // strcat(str,"/results.txt");
+    char str1[13] = "/results.txt";
+    char *name1 = (char *) malloc(strlen(str1) + strlen(name));
+    
+    sprintf(name1, "%s%s", name, str1);
+    std::cout<<name1<<std::endl;
+    const char* name2 = name1;
+    std::cout<<name2<<std::endl;
+    int a = system(name2);
+    int b = system("cat input.txt");
+
+    printf("最后睡10秒--%d--%d\n",a,b);
+
+    
+    
+    
+    
     printf(" %u contexts collected, output directory %s\n", context_collected, result_prefix);
+
+
+    // char str[5] = "cat ";
+    // char *name = (char *) malloc(strlen(str) + strlen(result_prefix));
+    // // 发送格式化输出到name指定的字符串
+    // sprintf(name, "%s%s", str, result_prefix); 
+    // // strcat(str,result_prefix);
+    // std::cout<<name<<std::endl;
+    // // strcat(str,"/results.txt");
+    // char str1[13] = "/results.txt";
+    // char *name1 = (char *) malloc(strlen(str1) + strlen(name));
+    
+    // sprintf(name1, "%s%s", name, str1);
+    // std::cout<<name1<<std::endl;
+    // const char* name2 = name1;
+    // std::cout<<name2<<std::endl;
+    // int a = system(name2);
+    // int b = system("cat input.txt");
+
+    // printf("最后睡10秒--%d--%d\n",a,b);
+
+
+    // sleep(10);
   } else {
     if (context_collected != context_count) {
       results_output_break();
@@ -1326,7 +1623,8 @@ void rocprofiler_unload(bool is_destr) {
     printf("\nROCPRofiler: %u contexts collected\n", context_collected);
   }
   fflush(stdout);
-
+  // printf("死10秒\n");
+  // sleep(10);
   // Cleanup
   if (callbacks_data != NULL) {
     delete[] callbacks_data->features;
@@ -1356,5 +1654,8 @@ extern "C" PUBLIC_API void OnUnloadTool() {
 extern "C" DESTRUCTOR_API void destructor() {
   ONLOAD_TRACE("begin loaded(" << is_loaded << ")");
   if (is_loaded == true) rocprofiler_unload(true);
+
+  // printf("出来rocprofiler_unload睡10s\n");
+  // sleep(10);
   ONLOAD_TRACE_END();
 }

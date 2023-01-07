@@ -1,0 +1,359 @@
+~/blake3/roc540-2/build ~/blake3/roc540-2
+-- The C compiler identification is GNU 9.4.0
+-- The CXX compiler identification is GNU 9.4.0
+-- Detecting C compiler ABI info
+-- Detecting C compiler ABI info - done
+-- Check for working C compiler: /usr/bin/cc - skipped
+-- Detecting C compile features
+-- Detecting C compile features - done
+-- Detecting CXX compiler ABI info
+-- Detecting CXX compiler ABI info - done
+-- Check for working CXX compiler: /usr/bin/c++ - skipped
+-- Detecting CXX compile features
+-- Detecting CXX compile features - done
+----------Build-Type: release
+------------Compiler: /usr/bin/c++
+----Compiler-Version: 9.4.0
+-------ROCM_ROOT_DIR: /opt/rocm
+-----CMAKE_CXX_FLAGS:  -std=c++17 -Wall -Werror -Werror=return-type -fexceptions -fvisibility=hidden -fno-math-errno -fno-threadsafe-statics -fmerge-all-constants -fms-extensions -fmerge-all-constants -Werror=unused-result -fPIC
+---CMAKE_PREFIX_PATH: /opt/rocm/include/hsa:/opt/rocm
+---------GPU_TARGETS: 
+-- LIB-VERSION: 1.0.0
+-- LIB-VERSION STRING: 1.0.0
+-- Profiling API: /opt/rocm/include/roctracer/ext/prof_protocol.h
+-- Performing Test CMAKE_HAVE_LIBC_PTHREAD
+-- Performing Test CMAKE_HAVE_LIBC_PTHREAD - Failed
+-- Check if compiler accepts -pthread
+-- Check if compiler accepts -pthread - yes
+-- Found Threads: TRUE  
++ cp /home/ps/blake3/roc540-2/test/run.sh /home/ps/blake3/roc540-2/build
++ cp /home/ps/blake3/roc540-2/test/tool/gfx_metrics.xml /home/ps/blake3/roc540-2/test/tool/metrics.xml /home/ps/blake3/roc540-2/test/tool/pmc_input.xml /home/ps/blake3/roc540-2/test/tool/pmc_input1.xml /home/ps/blake3/roc540-2/build
++ mkdir -p /home/ps/blake3/roc540-2/build/RESULTS
++ cp -r /home/ps/blake3/roc540-2/test/ocl /home/ps/blake3/roc540-2/build/test/.
+CMake-install-prefix: /opt/rocm
+CPack-install-prefix: /opt/rocm
+-----------Dest-name: rocprofiler
+Using CPACK_DEBIAN_PACKAGE_RELEASE local
+Using CPACK_RPM_PACKAGE_RELEASE local
+RESULT_VARIABLE No such file or directory OUTPUT_VARIABLE: 
+-- Configuring done
+-- Generating done
+-- Build files have been written to: /home/ps/blake3/roc540-2/build
+/opt/cmake-3.24.2/bin/cmake -S/home/ps/blake3/roc540-2 -B/home/ps/blake3/roc540-2/build --check-build-system CMakeFiles/Makefile.cmake 0
+/opt/cmake-3.24.2/bin/cmake -E cmake_progress_start /home/ps/blake3/roc540-2/build/CMakeFiles /home/ps/blake3/roc540-2/build//CMakeFiles/progress.marks
+make  -f CMakeFiles/Makefile2 all
+make[1]: Entering directory '/home/ps/blake3/roc540-2/build'
+make  -f CMakeFiles/rocprofiler64.dir/build.make CMakeFiles/rocprofiler64.dir/depend
+make  -f CMakeFiles/link_rocprof.dir/build.make CMakeFiles/link_rocprof.dir/depend
+make  -f CMakeFiles/link_librocprofiler64.so.dir/build.make CMakeFiles/link_librocprofiler64.so.dir/depend
+make  -f CMakeFiles/link_librocprofiler64.so.1.dir/build.make CMakeFiles/link_librocprofiler64.so.1.dir/depend
+make  -f CMakeFiles/link_librocprofiler64.so.1.0.0.dir/build.make CMakeFiles/link_librocprofiler64.so.1.0.0.dir/depend
+make[2]: Entering directory '/home/ps/blake3/roc540-2/build'
+cd /home/ps/blake3/roc540-2/build && /opt/cmake-3.24.2/bin/cmake -E cmake_depends "Unix Makefiles" /home/ps/blake3/roc540-2 /home/ps/blake3/roc540-2 /home/ps/blake3/roc540-2/build /home/ps/blake3/roc540-2/build /home/ps/blake3/roc540-2/build/CMakeFiles/rocprofiler64.dir/DependInfo.cmake --color=
+make[2]: Entering directory '/home/ps/blake3/roc540-2/build'
+cd /home/ps/blake3/roc540-2/build && /opt/cmake-3.24.2/bin/cmake -E cmake_depends "Unix Makefiles" /home/ps/blake3/roc540-2 /home/ps/blake3/roc540-2 /home/ps/blake3/roc540-2/build /home/ps/blake3/roc540-2/build /home/ps/blake3/roc540-2/build/CMakeFiles/link_rocprof.dir/DependInfo.cmake --color=
+make  -f CMakeFiles/link_libtool.so.dir/build.make CMakeFiles/link_libtool.so.dir/depend
+make  -f CMakeFiles/link_ctrl.dir/build.make CMakeFiles/link_ctrl.dir/depend
+make[2]: Entering directory '/home/ps/blake3/roc540-2/build'
+cd /home/ps/blake3/roc540-2/build && /opt/cmake-3.24.2/bin/cmake -E cmake_depends "Unix Makefiles" /home/ps/blake3/roc540-2 /home/ps/blake3/roc540-2 /home/ps/blake3/roc540-2/build /home/ps/blake3/roc540-2/build /home/ps/blake3/roc540-2/build/CMakeFiles/link_librocprofiler64.so.dir/DependInfo.cmake --color=
+make  -f CMakeFiles/link_metrics.dir/build.make CMakeFiles/link_metrics.dir/depend
+make[2]: Entering directory '/home/ps/blake3/roc540-2/build'
+cd /home/ps/blake3/roc540-2/build && /opt/cmake-3.24.2/bin/cmake -E cmake_depends "Unix Makefiles" /home/ps/blake3/roc540-2 /home/ps/blake3/roc540-2 /home/ps/blake3/roc540-2/build /home/ps/blake3/roc540-2/build /home/ps/blake3/roc540-2/build/CMakeFiles/link_librocprofiler64.so.1.dir/DependInfo.cmake --color=
+make  -f test/CMakeFiles/c_test.dir/build.make test/CMakeFiles/c_test.dir/depend
+make[2]: Entering directory '/home/ps/blake3/roc540-2/build'
+cd /home/ps/blake3/roc540-2/build && /opt/cmake-3.24.2/bin/cmake -E cmake_depends "Unix Makefiles" /home/ps/blake3/roc540-2 /home/ps/blake3/roc540-2 /home/ps/blake3/roc540-2/build /home/ps/blake3/roc540-2/build /home/ps/blake3/roc540-2/build/CMakeFiles/link_librocprofiler64.so.1.0.0.dir/DependInfo.cmake --color=
+make[2]: Entering directory '/home/ps/blake3/roc540-2/build'
+cd /home/ps/blake3/roc540-2/build && /opt/cmake-3.24.2/bin/cmake -E cmake_depends "Unix Makefiles" /home/ps/blake3/roc540-2 /home/ps/blake3/roc540-2 /home/ps/blake3/roc540-2/build /home/ps/blake3/roc540-2/build /home/ps/blake3/roc540-2/build/CMakeFiles/link_libtool.so.dir/DependInfo.cmake --color=
+make  -f test/CMakeFiles/rocprof-ctrl.dir/build.make test/CMakeFiles/rocprof-ctrl.dir/depend
+make[2]: Entering directory '/home/ps/blake3/roc540-2/build'
+cd /home/ps/blake3/roc540-2/build && /opt/cmake-3.24.2/bin/cmake -E cmake_depends "Unix Makefiles" /home/ps/blake3/roc540-2 /home/ps/blake3/roc540-2 /home/ps/blake3/roc540-2/build /home/ps/blake3/roc540-2/build /home/ps/blake3/roc540-2/build/CMakeFiles/link_ctrl.dir/DependInfo.cmake --color=
+make[2]: Entering directory '/home/ps/blake3/roc540-2/build'
+cd /home/ps/blake3/roc540-2/build && /opt/cmake-3.24.2/bin/cmake -E cmake_depends "Unix Makefiles" /home/ps/blake3/roc540-2 /home/ps/blake3/roc540-2 /home/ps/blake3/roc540-2/build /home/ps/blake3/roc540-2/build /home/ps/blake3/roc540-2/build/CMakeFiles/link_metrics.dir/DependInfo.cmake --color=
+make[2]: Entering directory '/home/ps/blake3/roc540-2/build'
+cd /home/ps/blake3/roc540-2/build && /opt/cmake-3.24.2/bin/cmake -E cmake_depends "Unix Makefiles" /home/ps/blake3/roc540-2 /home/ps/blake3/roc540-2/test /home/ps/blake3/roc540-2/build /home/ps/blake3/roc540-2/build/test /home/ps/blake3/roc540-2/build/test/CMakeFiles/c_test.dir/DependInfo.cmake --color=
+make[2]: Leaving directory '/home/ps/blake3/roc540-2/build'
+make[2]: Leaving directory '/home/ps/blake3/roc540-2/build'
+make[2]: Entering directory '/home/ps/blake3/roc540-2/build'
+cd /home/ps/blake3/roc540-2/build && /opt/cmake-3.24.2/bin/cmake -E cmake_depends "Unix Makefiles" /home/ps/blake3/roc540-2 /home/ps/blake3/roc540-2/test /home/ps/blake3/roc540-2/build /home/ps/blake3/roc540-2/build/test /home/ps/blake3/roc540-2/build/test/CMakeFiles/rocprof-ctrl.dir/DependInfo.cmake --color=
+make[2]: Leaving directory '/home/ps/blake3/roc540-2/build'
+make  -f CMakeFiles/link_librocprofiler64.so.dir/build.make CMakeFiles/link_librocprofiler64.so.dir/build
+make[2]: Leaving directory '/home/ps/blake3/roc540-2/build'
+make  -f CMakeFiles/rocprofiler64.dir/build.make CMakeFiles/rocprofiler64.dir/build
+make[2]: Leaving directory '/home/ps/blake3/roc540-2/build'
+make  -f CMakeFiles/link_rocprof.dir/build.make CMakeFiles/link_rocprof.dir/build
+make[2]: Leaving directory '/home/ps/blake3/roc540-2/build'
+make[2]: Entering directory '/home/ps/blake3/roc540-2/build'
+/opt/cmake-3.24.2/bin/cmake -E create_symlink ../../lib/librocprofiler64.so /home/ps/blake3/roc540-2/build/wrapper_dir/lib/librocprofiler64.so
+make  -f CMakeFiles/link_librocprofiler64.so.1.dir/build.make CMakeFiles/link_librocprofiler64.so.1.dir/build
+make  -f CMakeFiles/link_librocprofiler64.so.1.0.0.dir/build.make CMakeFiles/link_librocprofiler64.so.1.0.0.dir/build
+make  -f CMakeFiles/link_libtool.so.dir/build.make CMakeFiles/link_libtool.so.dir/build
+make[2]: Leaving directory '/home/ps/blake3/roc540-2/build'
+make[2]: Leaving directory '/home/ps/blake3/roc540-2/build'
+make[2]: Entering directory '/home/ps/blake3/roc540-2/build'
+make[2]: Entering directory '/home/ps/blake3/roc540-2/build'
+/opt/cmake-3.24.2/bin/cmake -E create_symlink ../../bin/rocprof /home/ps/blake3/roc540-2/build/wrapper_dir/bin/rocprof
+make  -f CMakeFiles/link_ctrl.dir/build.make CMakeFiles/link_ctrl.dir/build
+make[2]: Entering directory '/home/ps/blake3/roc540-2/build'
+/opt/cmake-3.24.2/bin/cmake -E create_symlink ../../lib/librocprofiler64.so.1.0.0 /home/ps/blake3/roc540-2/build/wrapper_dir/lib/librocprofiler64.so.1.0.0
+make[2]: Leaving directory '/home/ps/blake3/roc540-2/build'
+make[2]: Entering directory '/home/ps/blake3/roc540-2/build'
+/opt/cmake-3.24.2/bin/cmake -E create_symlink ../../lib/librocprofiler64.so.1 /home/ps/blake3/roc540-2/build/wrapper_dir/lib/librocprofiler64.so.1
+make  -f CMakeFiles/link_metrics.dir/build.make CMakeFiles/link_metrics.dir/build
+make[2]: Entering directory '/home/ps/blake3/roc540-2/build'
+/opt/cmake-3.24.2/bin/cmake -E create_symlink ../../lib/rocprofiler/librocprof-tool.so /home/ps/blake3/roc540-2/build/wrapper_dir/tool/libtool.so
+make[2]: Leaving directory '/home/ps/blake3/roc540-2/build'
+make  -f test/CMakeFiles/c_test.dir/build.make test/CMakeFiles/c_test.dir/build
+make[2]: Entering directory '/home/ps/blake3/roc540-2/build'
+/opt/cmake-3.24.2/bin/cmake -E create_symlink ../../lib/rocprofiler/rocprof-ctrl /home/ps/blake3/roc540-2/build/wrapper_dir/tool/ctrl
+make[2]: Leaving directory '/home/ps/blake3/roc540-2/build'
+make  -f test/CMakeFiles/rocprof-ctrl.dir/build.make test/CMakeFiles/rocprof-ctrl.dir/build
+make[2]: Entering directory '/home/ps/blake3/roc540-2/build'
+make[2]: Leaving directory '/home/ps/blake3/roc540-2/build'
+/opt/cmake-3.24.2/bin/cmake -E create_symlink ../../lib/rocprofiler/metrics.xml /home/ps/blake3/roc540-2/build/wrapper_dir/lib/metrics.xml
+make[2]: Leaving directory '/home/ps/blake3/roc540-2/build'
+make[2]: Leaving directory '/home/ps/blake3/roc540-2/build'
+make[2]: Entering directory '/home/ps/blake3/roc540-2/build'
+[  2%] Building CXX object CMakeFiles/rocprofiler64.dir/src/core/rocprofiler.cpp.o
+make[2]: Entering directory '/home/ps/blake3/roc540-2/build'
+make[2]: Leaving directory '/home/ps/blake3/roc540-2/build'
+make[2]: Leaving directory '/home/ps/blake3/roc540-2/build'
+[  2%] Built target link_librocprofiler64.so
+[  5%] Building CXX object CMakeFiles/rocprofiler64.dir/src/core/gpu_command.cpp.o
+[  7%] Building CXX object CMakeFiles/rocprofiler64.dir/src/core/simple_proxy_queue.cpp.o
+/usr/bin/c++ -DAQLPROF_NEW_API=1 -DHSA_DEPRECATED="" -DHSA_LARGE_MODEL="" -DLINUX -DLITTLEENDIAN_CPU=1 -DNEW_TRACE_API=1 -DUNIX_OS -DUSE_PROF_API=1 -D__AMD64__ -D__linux__ -D__x86_64__ -Drocprofiler64_EXPORTS -I/opt/rocm/include/roctracer/ext -I/home/ps/blake3/roc540-2/src -I/home/ps/blake3/roc540-2 -isystem /opt/rocm/include -isystem /opt/rocm/hsa/include/hsa -std=c++17 -Wall -Werror -Werror=return-type -fexceptions -fvisibility=hidden -fno-math-errno -fno-threadsafe-statics -fmerge-all-constants -fms-extensions -fmerge-all-constants -Werror=unused-result -fPIC -O3 -DNDEBUG -fPIC -MD -MT CMakeFiles/rocprofiler64.dir/src/core/rocprofiler.cpp.o -MF CMakeFiles/rocprofiler64.dir/src/core/rocprofiler.cpp.o.d -o CMakeFiles/rocprofiler64.dir/src/core/rocprofiler.cpp.o -c /home/ps/blake3/roc540-2/src/core/rocprofiler.cpp
+[ 10%] Building CXX object CMakeFiles/rocprofiler64.dir/src/core/metrics.cpp.o
+[ 12%] Building CXX object CMakeFiles/rocprofiler64.dir/src/core/proxy_queue.cpp.o
+/usr/bin/c++ -DAQLPROF_NEW_API=1 -DHSA_DEPRECATED="" -DHSA_LARGE_MODEL="" -DLINUX -DLITTLEENDIAN_CPU=1 -DNEW_TRACE_API=1 -DUNIX_OS -DUSE_PROF_API=1 -D__AMD64__ -D__linux__ -D__x86_64__ -Drocprofiler64_EXPORTS -I/opt/rocm/include/roctracer/ext -I/home/ps/blake3/roc540-2/src -I/home/ps/blake3/roc540-2 -isystem /opt/rocm/include -isystem /opt/rocm/hsa/include/hsa -std=c++17 -Wall -Werror -Werror=return-type -fexceptions -fvisibility=hidden -fno-math-errno -fno-threadsafe-statics -fmerge-all-constants -fms-extensions -fmerge-all-constants -Werror=unused-result -fPIC -O3 -DNDEBUG -fPIC -MD -MT CMakeFiles/rocprofiler64.dir/src/core/gpu_command.cpp.o -MF CMakeFiles/rocprofiler64.dir/src/core/gpu_command.cpp.o.d -o CMakeFiles/rocprofiler64.dir/src/core/gpu_command.cpp.o -c /home/ps/blake3/roc540-2/src/core/gpu_command.cpp
+[ 15%] Building CXX object CMakeFiles/rocprofiler64.dir/src/core/intercept_queue.cpp.o
+make[2]: Leaving directory '/home/ps/blake3/roc540-2/build'
+/usr/bin/c++ -DAQLPROF_NEW_API=1 -DHSA_DEPRECATED="" -DHSA_LARGE_MODEL="" -DLINUX -DLITTLEENDIAN_CPU=1 -DNEW_TRACE_API=1 -DUNIX_OS -DUSE_PROF_API=1 -D__AMD64__ -D__linux__ -D__x86_64__ -Drocprofiler64_EXPORTS -I/opt/rocm/include/roctracer/ext -I/home/ps/blake3/roc540-2/src -I/home/ps/blake3/roc540-2 -isystem /opt/rocm/include -isystem /opt/rocm/hsa/include/hsa -std=c++17 -Wall -Werror -Werror=return-type -fexceptions -fvisibility=hidden -fno-math-errno -fno-threadsafe-statics -fmerge-all-constants -fms-extensions -fmerge-all-constants -Werror=unused-result -fPIC -O3 -DNDEBUG -fPIC -MD -MT CMakeFiles/rocprofiler64.dir/src/core/simple_proxy_queue.cpp.o -MF CMakeFiles/rocprofiler64.dir/src/core/simple_proxy_queue.cpp.o.d -o CMakeFiles/rocprofiler64.dir/src/core/simple_proxy_queue.cpp.o -c /home/ps/blake3/roc540-2/src/core/simple_proxy_queue.cpp
+[ 15%] Built target link_rocprof
+/usr/bin/c++ -DAQLPROF_NEW_API=1 -DHSA_DEPRECATED="" -DHSA_LARGE_MODEL="" -DLINUX -DLITTLEENDIAN_CPU=1 -DNEW_TRACE_API=1 -DUNIX_OS -DUSE_PROF_API=1 -D__AMD64__ -D__linux__ -D__x86_64__ -Drocprofiler64_EXPORTS -I/opt/rocm/include/roctracer/ext -I/home/ps/blake3/roc540-2/src -I/home/ps/blake3/roc540-2 -isystem /opt/rocm/include -isystem /opt/rocm/hsa/include/hsa -std=c++17 -Wall -Werror -Werror=return-type -fexceptions -fvisibility=hidden -fno-math-errno -fno-threadsafe-statics -fmerge-all-constants -fms-extensions -fmerge-all-constants -Werror=unused-result -fPIC -O3 -DNDEBUG -fPIC -MD -MT CMakeFiles/rocprofiler64.dir/src/core/metrics.cpp.o -MF CMakeFiles/rocprofiler64.dir/src/core/metrics.cpp.o.d -o CMakeFiles/rocprofiler64.dir/src/core/metrics.cpp.o -c /home/ps/blake3/roc540-2/src/core/metrics.cpp
+[ 15%] Built target link_librocprofiler64.so.1
+/usr/bin/c++ -DAQLPROF_NEW_API=1 -DHSA_DEPRECATED="" -DHSA_LARGE_MODEL="" -DLINUX -DLITTLEENDIAN_CPU=1 -DNEW_TRACE_API=1 -DUNIX_OS -DUSE_PROF_API=1 -D__AMD64__ -D__linux__ -D__x86_64__ -Drocprofiler64_EXPORTS -I/opt/rocm/include/roctracer/ext -I/home/ps/blake3/roc540-2/src -I/home/ps/blake3/roc540-2 -isystem /opt/rocm/include -isystem /opt/rocm/hsa/include/hsa -std=c++17 -Wall -Werror -Werror=return-type -fexceptions -fvisibility=hidden -fno-math-errno -fno-threadsafe-statics -fmerge-all-constants -fms-extensions -fmerge-all-constants -Werror=unused-result -fPIC -O3 -DNDEBUG -fPIC -MD -MT CMakeFiles/rocprofiler64.dir/src/core/proxy_queue.cpp.o -MF CMakeFiles/rocprofiler64.dir/src/core/proxy_queue.cpp.o.d -o CMakeFiles/rocprofiler64.dir/src/core/proxy_queue.cpp.o -c /home/ps/blake3/roc540-2/src/core/proxy_queue.cpp
+[ 17%] Building CXX object CMakeFiles/rocprofiler64.dir/src/core/activity.cpp.o
+[ 17%] Built target link_librocprofiler64.so.1.0.0
+[ 20%] Building CXX object test/CMakeFiles/rocprof-ctrl.dir/app/test.cpp.o
+/usr/bin/c++ -DAQLPROF_NEW_API=1 -DHSA_DEPRECATED="" -DHSA_LARGE_MODEL="" -DLINUX -DLITTLEENDIAN_CPU=1 -DNEW_TRACE_API=1 -DUNIX_OS -DUSE_PROF_API=1 -D__AMD64__ -D__linux__ -D__x86_64__ -Drocprofiler64_EXPORTS -I/opt/rocm/include/roctracer/ext -I/home/ps/blake3/roc540-2/src -I/home/ps/blake3/roc540-2 -isystem /opt/rocm/include -isystem /opt/rocm/hsa/include/hsa -std=c++17 -Wall -Werror -Werror=return-type -fexceptions -fvisibility=hidden -fno-math-errno -fno-threadsafe-statics -fmerge-all-constants -fms-extensions -fmerge-all-constants -Werror=unused-result -fPIC -O3 -DNDEBUG -fPIC -MD -MT CMakeFiles/rocprofiler64.dir/src/core/intercept_queue.cpp.o -MF CMakeFiles/rocprofiler64.dir/src/core/intercept_queue.cpp.o.d -o CMakeFiles/rocprofiler64.dir/src/core/intercept_queue.cpp.o -c /home/ps/blake3/roc540-2/src/core/intercept_queue.cpp
+[ 23%] Building CXX object CMakeFiles/rocprofiler64.dir/src/util/hsa_rsrc_factory.cpp.o
+[ 25%] Building CXX object test/CMakeFiles/rocprof-ctrl.dir/util/hsa_rsrc_factory.cpp.o
+[ 28%] Building CXX object test/CMakeFiles/rocprof-ctrl.dir/util/perf_timer.cpp.o
+cd /home/ps/blake3/roc540-2/build/test && /usr/bin/c++ -DAQLPROF_NEW_API=1 -DHSA_DEPRECATED="" -DHSA_LARGE_MODEL="" -DLINUX -DLITTLEENDIAN_CPU=1 -DNEW_TRACE_API=1 -DUNIX_OS -DUSE_PROF_API=1 -D__AMD64__ -D__linux__ -D__x86_64__ -I/opt/rocm/include/roctracer/ext -I/home/ps/blake3/roc540-2/test -I/home/ps/blake3/roc540-2 -isystem /opt/rocm/include -isystem /opt/rocm/hsa/include/hsa -std=c++17 -Wall -Werror -Werror=return-type -fexceptions -fvisibility=hidden -fno-math-errno -fno-threadsafe-statics -fmerge-all-constants -fms-extensions -fmerge-all-constants -Werror=unused-result -fPIC -O3 -DNDEBUG -pthread -MD -MT test/CMakeFiles/rocprof-ctrl.dir/app/test.cpp.o -MF CMakeFiles/rocprof-ctrl.dir/app/test.cpp.o.d -o CMakeFiles/rocprof-ctrl.dir/app/test.cpp.o -c /home/ps/blake3/roc540-2/test/app/test.cpp
+/usr/bin/c++ -DAQLPROF_NEW_API=1 -DHSA_DEPRECATED="" -DHSA_LARGE_MODEL="" -DLINUX -DLITTLEENDIAN_CPU=1 -DNEW_TRACE_API=1 -DUNIX_OS -DUSE_PROF_API=1 -D__AMD64__ -D__linux__ -D__x86_64__ -Drocprofiler64_EXPORTS -I/opt/rocm/include/roctracer/ext -I/home/ps/blake3/roc540-2/src -I/home/ps/blake3/roc540-2 -isystem /opt/rocm/include -isystem /opt/rocm/hsa/include/hsa -std=c++17 -Wall -Werror -Werror=return-type -fexceptions -fvisibility=hidden -fno-math-errno -fno-threadsafe-statics -fmerge-all-constants -fms-extensions -fmerge-all-constants -Werror=unused-result -fPIC -O3 -DNDEBUG -fPIC -MD -MT CMakeFiles/rocprofiler64.dir/src/core/activity.cpp.o -MF CMakeFiles/rocprofiler64.dir/src/core/activity.cpp.o.d -o CMakeFiles/rocprofiler64.dir/src/core/activity.cpp.o -c /home/ps/blake3/roc540-2/src/core/activity.cpp
+[ 33%] Building CXX object test/CMakeFiles/rocprof-ctrl.dir/ctrl/test_hsa.cpp.o
+[ 33%] Building C object test/CMakeFiles/c_test.dir/app/c_test.c.o
+[ 33%] Built target link_ctrl
+/usr/bin/c++ -DAQLPROF_NEW_API=1 -DHSA_DEPRECATED="" -DHSA_LARGE_MODEL="" -DLINUX -DLITTLEENDIAN_CPU=1 -DNEW_TRACE_API=1 -DUNIX_OS -DUSE_PROF_API=1 -D__AMD64__ -D__linux__ -D__x86_64__ -Drocprofiler64_EXPORTS -I/opt/rocm/include/roctracer/ext -I/home/ps/blake3/roc540-2/src -I/home/ps/blake3/roc540-2 -isystem /opt/rocm/include -isystem /opt/rocm/hsa/include/hsa -std=c++17 -Wall -Werror -Werror=return-type -fexceptions -fvisibility=hidden -fno-math-errno -fno-threadsafe-statics -fmerge-all-constants -fms-extensions -fmerge-all-constants -Werror=unused-result -fPIC -O3 -DNDEBUG -fPIC -MD -MT CMakeFiles/rocprofiler64.dir/src/util/hsa_rsrc_factory.cpp.o -MF CMakeFiles/rocprofiler64.dir/src/util/hsa_rsrc_factory.cpp.o.d -o CMakeFiles/rocprofiler64.dir/src/util/hsa_rsrc_factory.cpp.o -c /home/ps/blake3/roc540-2/src/util/hsa_rsrc_factory.cpp
+cd /home/ps/blake3/roc540-2/build/test && /usr/bin/c++ -DAQLPROF_NEW_API=1 -DHSA_DEPRECATED="" -DHSA_LARGE_MODEL="" -DLINUX -DLITTLEENDIAN_CPU=1 -DNEW_TRACE_API=1 -DUNIX_OS -DUSE_PROF_API=1 -D__AMD64__ -D__linux__ -D__x86_64__ -I/opt/rocm/include/roctracer/ext -I/home/ps/blake3/roc540-2/test -I/home/ps/blake3/roc540-2 -isystem /opt/rocm/include -isystem /opt/rocm/hsa/include/hsa -std=c++17 -Wall -Werror -Werror=return-type -fexceptions -fvisibility=hidden -fno-math-errno -fno-threadsafe-statics -fmerge-all-constants -fms-extensions -fmerge-all-constants -Werror=unused-result -fPIC -O3 -DNDEBUG -pthread -MD -MT test/CMakeFiles/rocprof-ctrl.dir/util/perf_timer.cpp.o -MF CMakeFiles/rocprof-ctrl.dir/util/perf_timer.cpp.o.d -o CMakeFiles/rocprof-ctrl.dir/util/perf_timer.cpp.o -c /home/ps/blake3/roc540-2/test/util/perf_timer.cpp
+cd /home/ps/blake3/roc540-2/build/test && /usr/bin/c++ -DAQLPROF_NEW_API=1 -DHSA_DEPRECATED="" -DHSA_LARGE_MODEL="" -DLINUX -DLITTLEENDIAN_CPU=1 -DNEW_TRACE_API=1 -DUNIX_OS -DUSE_PROF_API=1 -D__AMD64__ -D__linux__ -D__x86_64__ -I/opt/rocm/include/roctracer/ext -I/home/ps/blake3/roc540-2/test -I/home/ps/blake3/roc540-2 -isystem /opt/rocm/include -isystem /opt/rocm/hsa/include/hsa -std=c++17 -Wall -Werror -Werror=return-type -fexceptions -fvisibility=hidden -fno-math-errno -fno-threadsafe-statics -fmerge-all-constants -fms-extensions -fmerge-all-constants -Werror=unused-result -fPIC -O3 -DNDEBUG -pthread -MD -MT test/CMakeFiles/rocprof-ctrl.dir/util/hsa_rsrc_factory.cpp.o -MF CMakeFiles/rocprof-ctrl.dir/util/hsa_rsrc_factory.cpp.o.d -o CMakeFiles/rocprof-ctrl.dir/util/hsa_rsrc_factory.cpp.o -c /home/ps/blake3/roc540-2/test/util/hsa_rsrc_factory.cpp
+[ 35%] Built target link_libtool.so
+[ 35%] Building CXX object test/CMakeFiles/rocprof-ctrl.dir/simple_convolution/simple_convolution.cpp.o
+cd /home/ps/blake3/roc540-2/build/test && /usr/bin/c++ -DAQLPROF_NEW_API=1 -DHSA_DEPRECATED="" -DHSA_LARGE_MODEL="" -DLINUX -DLITTLEENDIAN_CPU=1 -DNEW_TRACE_API=1 -DUNIX_OS -DUSE_PROF_API=1 -D__AMD64__ -D__linux__ -D__x86_64__ -I/opt/rocm/include/roctracer/ext -I/home/ps/blake3/roc540-2/test -I/home/ps/blake3/roc540-2 -isystem /opt/rocm/include -isystem /opt/rocm/hsa/include/hsa -std=c++17 -Wall -Werror -Werror=return-type -fexceptions -fvisibility=hidden -fno-math-errno -fno-threadsafe-statics -fmerge-all-constants -fms-extensions -fmerge-all-constants -Werror=unused-result -fPIC -O3 -DNDEBUG -pthread -MD -MT test/CMakeFiles/rocprof-ctrl.dir/ctrl/test_hsa.cpp.o -MF CMakeFiles/rocprof-ctrl.dir/ctrl/test_hsa.cpp.o.d -o CMakeFiles/rocprof-ctrl.dir/ctrl/test_hsa.cpp.o -c /home/ps/blake3/roc540-2/test/ctrl/test_hsa.cpp
+cd /home/ps/blake3/roc540-2/build/test && /usr/bin/cc -DAQLPROF_NEW_API=1 -DHSA_DEPRECATED="" -DHSA_LARGE_MODEL="" -DLINUX -DLITTLEENDIAN_CPU=1 -DNEW_TRACE_API=1 -DUNIX_OS -DUSE_PROF_API=1 -D__AMD64__ -D__linux__ -D__x86_64__ -I/opt/rocm/include/roctracer/ext -I/home/ps/blake3/roc540-2 -I/opt/rocm/include -I/opt/rocm/hsa/include/hsa -O3 -DNDEBUG -MD -MT test/CMakeFiles/c_test.dir/app/c_test.c.o -MF CMakeFiles/c_test.dir/app/c_test.c.o.d -o CMakeFiles/c_test.dir/app/c_test.c.o -c /home/ps/blake3/roc540-2/test/app/c_test.c
+cd /home/ps/blake3/roc540-2/build/test && /usr/bin/c++ -DAQLPROF_NEW_API=1 -DHSA_DEPRECATED="" -DHSA_LARGE_MODEL="" -DLINUX -DLITTLEENDIAN_CPU=1 -DNEW_TRACE_API=1 -DUNIX_OS -DUSE_PROF_API=1 -D__AMD64__ -D__linux__ -D__x86_64__ -I/opt/rocm/include/roctracer/ext -I/home/ps/blake3/roc540-2/test -I/home/ps/blake3/roc540-2 -isystem /opt/rocm/include -isystem /opt/rocm/hsa/include/hsa -std=c++17 -Wall -Werror -Werror=return-type -fexceptions -fvisibility=hidden -fno-math-errno -fno-threadsafe-statics -fmerge-all-constants -fms-extensions -fmerge-all-constants -Werror=unused-result -fPIC -O3 -DNDEBUG -pthread -MD -MT test/CMakeFiles/rocprof-ctrl.dir/simple_convolution/simple_convolution.cpp.o -MF CMakeFiles/rocprof-ctrl.dir/simple_convolution/simple_convolution.cpp.o.d -o CMakeFiles/rocprof-ctrl.dir/simple_convolution/simple_convolution.cpp.o -c /home/ps/blake3/roc540-2/test/simple_convolution/simple_convolution.cpp
+[ 35%] Built target link_metrics
+[ 38%] Linking C executable c_test
+cd /home/ps/blake3/roc540-2/build/test && /opt/cmake-3.24.2/bin/cmake -E cmake_link_script CMakeFiles/c_test.dir/link.txt --verbose=1
+/usr/bin/cc -O3 -DNDEBUG -rdynamic "-Bdynamic -z,neexecstack" CMakeFiles/c_test.dir/app/c_test.c.o -o c_test 
+make[2]: Leaving directory '/home/ps/blake3/roc540-2/build'
+[ 38%] Built target c_test
+[ 41%] Linking CXX executable rocprof-ctrl
+cd /home/ps/blake3/roc540-2/build/test && /opt/cmake-3.24.2/bin/cmake -E cmake_link_script CMakeFiles/rocprof-ctrl.dir/link.txt --verbose=1
+/usr/bin/c++  -std=c++17 -Wall -Werror -Werror=return-type -fexceptions -fvisibility=hidden -fno-math-errno -fno-threadsafe-statics -fmerge-all-constants -fms-extensions -fmerge-all-constants -Werror=unused-result -fPIC -O3 -DNDEBUG -rdynamic "-Bdynamic -z,neexecstack" "CMakeFiles/rocprof-ctrl.dir/app/test.cpp.o" "CMakeFiles/rocprof-ctrl.dir/ctrl/test_hsa.cpp.o" "CMakeFiles/rocprof-ctrl.dir/util/hsa_rsrc_factory.cpp.o" "CMakeFiles/rocprof-ctrl.dir/util/perf_timer.cpp.o" "CMakeFiles/rocprof-ctrl.dir/simple_convolution/simple_convolution.cpp.o" -o rocprof-ctrl  -Wl,-rpath,/opt/rocm/lib /opt/rocm/lib/libhsa-runtime64.so.1.7.50400 /opt/rocm/lib/libhsakmt.a -ldl -L/usr/lib/x86_64-linux-gnu -ldrm -ldrm_amdgpu -lpthread -lrt /usr/lib/x86_64-linux-gnu/libc.so.6 -lnuma -pthread 
+make[2]: Leaving directory '/home/ps/blake3/roc540-2/build'
+[ 41%] Built target rocprof-ctrl
+[ 43%] Linking CXX shared library librocprofiler64.so
+/opt/cmake-3.24.2/bin/cmake -E cmake_link_script CMakeFiles/rocprofiler64.dir/link.txt --verbose=1
+/usr/bin/c++ -fPIC  -std=c++17 -Wall -Werror -Werror=return-type -fexceptions -fvisibility=hidden -fno-math-errno -fno-threadsafe-statics -fmerge-all-constants -fms-extensions -fmerge-all-constants -Werror=unused-result -fPIC -O3 -DNDEBUG "-Bdynamic -z,neexecstack"  -Wl,--enable-new-dtags -Wl,--rpath,/opt/rocm/lib:/opt/rocm/lib64 -shared -Wl,-soname,librocprofiler64.so.1 -o librocprofiler64.so.1.0.0 CMakeFiles/rocprofiler64.dir/src/core/rocprofiler.cpp.o CMakeFiles/rocprofiler64.dir/src/core/gpu_command.cpp.o CMakeFiles/rocprofiler64.dir/src/core/proxy_queue.cpp.o CMakeFiles/rocprofiler64.dir/src/core/simple_proxy_queue.cpp.o CMakeFiles/rocprofiler64.dir/src/core/intercept_queue.cpp.o CMakeFiles/rocprofiler64.dir/src/core/metrics.cpp.o CMakeFiles/rocprofiler64.dir/src/core/activity.cpp.o CMakeFiles/rocprofiler64.dir/src/util/hsa_rsrc_factory.cpp.o  -Wl,-rpath,/opt/rocm/lib: /opt/rocm/lib/libhsa-runtime64.so.1.7.50400 -lc -lstdc++ 
+/opt/cmake-3.24.2/bin/cmake -E cmake_symlink_library librocprofiler64.so.1.0.0 librocprofiler64.so.1 librocprofiler64.so
+/usr/bin/strip *.so
+make[2]: Leaving directory '/home/ps/blake3/roc540-2/build'
+[ 43%] Built target rocprofiler64
+make  -f test/CMakeFiles/standalone_test.dir/build.make test/CMakeFiles/standalone_test.dir/depend
+make  -f test/CMakeFiles/stand_intercept_test.dir/build.make test/CMakeFiles/stand_intercept_test.dir/depend
+make  -f test/CMakeFiles/intercept_test.dir/build.make test/CMakeFiles/intercept_test.dir/depend
+make  -f test/CMakeFiles/rocprof-tool.dir/build.make test/CMakeFiles/rocprof-tool.dir/depend
+make[2]: Entering directory '/home/ps/blake3/roc540-2/build'
+cd /home/ps/blake3/roc540-2/build && /opt/cmake-3.24.2/bin/cmake -E cmake_depends "Unix Makefiles" /home/ps/blake3/roc540-2 /home/ps/blake3/roc540-2/test /home/ps/blake3/roc540-2/build /home/ps/blake3/roc540-2/build/test /home/ps/blake3/roc540-2/build/test/CMakeFiles/standalone_test.dir/DependInfo.cmake --color=
+make[2]: Entering directory '/home/ps/blake3/roc540-2/build'
+cd /home/ps/blake3/roc540-2/build && /opt/cmake-3.24.2/bin/cmake -E cmake_depends "Unix Makefiles" /home/ps/blake3/roc540-2 /home/ps/blake3/roc540-2/test /home/ps/blake3/roc540-2/build /home/ps/blake3/roc540-2/build/test /home/ps/blake3/roc540-2/build/test/CMakeFiles/stand_intercept_test.dir/DependInfo.cmake --color=
+make[2]: Entering directory '/home/ps/blake3/roc540-2/build'
+cd /home/ps/blake3/roc540-2/build && /opt/cmake-3.24.2/bin/cmake -E cmake_depends "Unix Makefiles" /home/ps/blake3/roc540-2 /home/ps/blake3/roc540-2/test /home/ps/blake3/roc540-2/build /home/ps/blake3/roc540-2/build/test /home/ps/blake3/roc540-2/build/test/CMakeFiles/intercept_test.dir/DependInfo.cmake --color=
+make[2]: Entering directory '/home/ps/blake3/roc540-2/build'
+cd /home/ps/blake3/roc540-2/build && /opt/cmake-3.24.2/bin/cmake -E cmake_depends "Unix Makefiles" /home/ps/blake3/roc540-2 /home/ps/blake3/roc540-2/test /home/ps/blake3/roc540-2/build /home/ps/blake3/roc540-2/build/test /home/ps/blake3/roc540-2/build/test/CMakeFiles/rocprof-tool.dir/DependInfo.cmake --color=
+make[2]: Leaving directory '/home/ps/blake3/roc540-2/build'
+make  -f test/CMakeFiles/standalone_test.dir/build.make test/CMakeFiles/standalone_test.dir/build
+make[2]: Leaving directory '/home/ps/blake3/roc540-2/build'
+make  -f test/CMakeFiles/stand_intercept_test.dir/build.make test/CMakeFiles/stand_intercept_test.dir/build
+make[2]: Leaving directory '/home/ps/blake3/roc540-2/build'
+make  -f test/CMakeFiles/intercept_test.dir/build.make test/CMakeFiles/intercept_test.dir/build
+make[2]: Leaving directory '/home/ps/blake3/roc540-2/build'
+make  -f test/CMakeFiles/rocprof-tool.dir/build.make test/CMakeFiles/rocprof-tool.dir/build
+make[2]: Entering directory '/home/ps/blake3/roc540-2/build'
+make[2]: Entering directory '/home/ps/blake3/roc540-2/build'
+make[2]: Entering directory '/home/ps/blake3/roc540-2/build'
+make[2]: Entering directory '/home/ps/blake3/roc540-2/build'
+[ 46%] Building CXX object test/CMakeFiles/rocprof-tool.dir/tool/tool.cpp.o
+[ 51%] Building CXX object test/CMakeFiles/standalone_test.dir/app/standalone_test.cpp.o
+[ 51%] Building CXX object test/CMakeFiles/standalone_test.dir/ctrl/test_hsa.cpp.o
+[ 53%] Building CXX object test/CMakeFiles/standalone_test.dir/util/hsa_rsrc_factory.cpp.o
+cd /home/ps/blake3/roc540-2/build/test && /usr/bin/c++ -DAQLPROF_NEW_API=1 -DHSA_DEPRECATED="" -DHSA_LARGE_MODEL="" -DLINUX -DLITTLEENDIAN_CPU=1 -DNEW_TRACE_API=1 -DUNIX_OS -DUSE_PROF_API=1 -D__AMD64__ -D__linux__ -D__x86_64__ -Drocprof_tool_EXPORTS -I/opt/rocm/include/roctracer/ext -I/home/ps/blake3/roc540-2/test -I/home/ps/blake3/roc540-2 -isystem /opt/rocm/include -isystem /opt/rocm/hsa/include/hsa -std=c++17 -Wall -Werror -Werror=return-type -fexceptions -fvisibility=hidden -fno-math-errno -fno-threadsafe-statics -fmerge-all-constants -fms-extensions -fmerge-all-constants -Werror=unused-result -fPIC -O3 -DNDEBUG -fPIC -pthread -MD -MT test/CMakeFiles/rocprof-tool.dir/tool/tool.cpp.o -MF CMakeFiles/rocprof-tool.dir/tool/tool.cpp.o.d -o CMakeFiles/rocprof-tool.dir/tool/tool.cpp.o -c /home/ps/blake3/roc540-2/test/tool/tool.cpp
+[ 56%] Building CXX object test/CMakeFiles/stand_intercept_test.dir/app/stand_intercept_test.cpp.o
+cd /home/ps/blake3/roc540-2/build/test && /usr/bin/c++ -DAQLPROF_NEW_API=1 -DHSA_DEPRECATED="" -DHSA_LARGE_MODEL="" -DLINUX -DLITTLEENDIAN_CPU=1 -DNEW_TRACE_API=1 -DUNIX_OS -DUSE_PROF_API=1 -D__AMD64__ -D__linux__ -D__x86_64__ -I/opt/rocm/include/roctracer/ext -I/home/ps/blake3/roc540-2/test -I/home/ps/blake3/roc540-2 -isystem /opt/rocm/include -isystem /opt/rocm/hsa/include/hsa -std=c++17 -Wall -Werror -Werror=return-type -fexceptions -fvisibility=hidden -fno-math-errno -fno-threadsafe-statics -fmerge-all-constants -fms-extensions -fmerge-all-constants -Werror=unused-result -fPIC -O3 -DNDEBUG -pthread -MD -MT test/CMakeFiles/standalone_test.dir/ctrl/test_hsa.cpp.o -MF CMakeFiles/standalone_test.dir/ctrl/test_hsa.cpp.o.d -o CMakeFiles/standalone_test.dir/ctrl/test_hsa.cpp.o -c /home/ps/blake3/roc540-2/test/ctrl/test_hsa.cpp
+[ 58%] Building CXX object test/CMakeFiles/rocprof-tool.dir/util/hsa_rsrc_factory.cpp.o
+[ 64%] Building CXX object test/CMakeFiles/stand_intercept_test.dir/util/hsa_rsrc_factory.cpp.o
+cd /home/ps/blake3/roc540-2/build/test && /usr/bin/c++ -DAQLPROF_NEW_API=1 -DHSA_DEPRECATED="" -DHSA_LARGE_MODEL="" -DLINUX -DLITTLEENDIAN_CPU=1 -DNEW_TRACE_API=1 -DUNIX_OS -DUSE_PROF_API=1 -D__AMD64__ -D__linux__ -D__x86_64__ -I/opt/rocm/include/roctracer/ext -I/home/ps/blake3/roc540-2/test -I/home/ps/blake3/roc540-2 -isystem /opt/rocm/include -isystem /opt/rocm/hsa/include/hsa -std=c++17 -Wall -Werror -Werror=return-type -fexceptions -fvisibility=hidden -fno-math-errno -fno-threadsafe-statics -fmerge-all-constants -fms-extensions -fmerge-all-constants -Werror=unused-result -fPIC -O3 -DNDEBUG -pthread -MD -MT test/CMakeFiles/standalone_test.dir/app/standalone_test.cpp.o -MF CMakeFiles/standalone_test.dir/app/standalone_test.cpp.o.d -o CMakeFiles/standalone_test.dir/app/standalone_test.cpp.o -c /home/ps/blake3/roc540-2/test/app/standalone_test.cpp
+[ 66%] Building CXX object test/CMakeFiles/standalone_test.dir/simple_convolution/simple_convolution.cpp.o
+[ 66%] Building CXX object test/CMakeFiles/stand_intercept_test.dir/ctrl/test_hsa.cpp.o
+cd /home/ps/blake3/roc540-2/build/test && /usr/bin/c++ -DAQLPROF_NEW_API=1 -DHSA_DEPRECATED="" -DHSA_LARGE_MODEL="" -DLINUX -DLITTLEENDIAN_CPU=1 -DNEW_TRACE_API=1 -DUNIX_OS -DUSE_PROF_API=1 -D__AMD64__ -D__linux__ -D__x86_64__ -I/opt/rocm/include/roctracer/ext -I/home/ps/blake3/roc540-2/test -I/home/ps/blake3/roc540-2 -isystem /opt/rocm/include -isystem /opt/rocm/hsa/include/hsa -std=c++17 -Wall -Werror -Werror=return-type -fexceptions -fvisibility=hidden -fno-math-errno -fno-threadsafe-statics -fmerge-all-constants -fms-extensions -fmerge-all-constants -Werror=unused-result -fPIC -O3 -DNDEBUG -pthread -MD -MT test/CMakeFiles/stand_intercept_test.dir/app/stand_intercept_test.cpp.o -MF CMakeFiles/stand_intercept_test.dir/app/stand_intercept_test.cpp.o.d -o CMakeFiles/stand_intercept_test.dir/app/stand_intercept_test.cpp.o -c /home/ps/blake3/roc540-2/test/app/stand_intercept_test.cpp
+cd /home/ps/blake3/roc540-2/build/test && /usr/bin/c++ -DAQLPROF_NEW_API=1 -DHSA_DEPRECATED="" -DHSA_LARGE_MODEL="" -DLINUX -DLITTLEENDIAN_CPU=1 -DNEW_TRACE_API=1 -DUNIX_OS -DUSE_PROF_API=1 -D__AMD64__ -D__linux__ -D__x86_64__ -I/opt/rocm/include/roctracer/ext -I/home/ps/blake3/roc540-2/test -I/home/ps/blake3/roc540-2 -isystem /opt/rocm/include -isystem /opt/rocm/hsa/include/hsa -std=c++17 -Wall -Werror -Werror=return-type -fexceptions -fvisibility=hidden -fno-math-errno -fno-threadsafe-statics -fmerge-all-constants -fms-extensions -fmerge-all-constants -Werror=unused-result -fPIC -O3 -DNDEBUG -pthread -MD -MT test/CMakeFiles/standalone_test.dir/util/hsa_rsrc_factory.cpp.o -MF CMakeFiles/standalone_test.dir/util/hsa_rsrc_factory.cpp.o.d -o CMakeFiles/standalone_test.dir/util/hsa_rsrc_factory.cpp.o -c /home/ps/blake3/roc540-2/test/util/hsa_rsrc_factory.cpp
+[ 71%] Building CXX object test/CMakeFiles/intercept_test.dir/app/intercept_test.cpp.o
+[ 74%] Building CXX object test/CMakeFiles/intercept_test.dir/ctrl/test_hsa.cpp.o
+[ 76%] Building CXX object test/CMakeFiles/stand_intercept_test.dir/util/perf_timer.cpp.o
+cd /home/ps/blake3/roc540-2/build/test && /usr/bin/c++ -DAQLPROF_NEW_API=1 -DHSA_DEPRECATED="" -DHSA_LARGE_MODEL="" -DLINUX -DLITTLEENDIAN_CPU=1 -DNEW_TRACE_API=1 -DUNIX_OS -DUSE_PROF_API=1 -D__AMD64__ -D__linux__ -D__x86_64__ -I/opt/rocm/include/roctracer/ext -I/home/ps/blake3/roc540-2/test -I/home/ps/blake3/roc540-2 -isystem /opt/rocm/include -isystem /opt/rocm/hsa/include/hsa -std=c++17 -Wall -Werror -Werror=return-type -fexceptions -fvisibility=hidden -fno-math-errno -fno-threadsafe-statics -fmerge-all-constants -fms-extensions -fmerge-all-constants -Werror=unused-result -fPIC -O3 -DNDEBUG -pthread -MD -MT test/CMakeFiles/stand_intercept_test.dir/util/hsa_rsrc_factory.cpp.o -MF CMakeFiles/stand_intercept_test.dir/util/hsa_rsrc_factory.cpp.o.d -o CMakeFiles/stand_intercept_test.dir/util/hsa_rsrc_factory.cpp.o -c /home/ps/blake3/roc540-2/test/util/hsa_rsrc_factory.cpp
+cd /home/ps/blake3/roc540-2/build/test && /usr/bin/c++ -DAQLPROF_NEW_API=1 -DHSA_DEPRECATED="" -DHSA_LARGE_MODEL="" -DLINUX -DLITTLEENDIAN_CPU=1 -DNEW_TRACE_API=1 -DUNIX_OS -DUSE_PROF_API=1 -D__AMD64__ -D__linux__ -D__x86_64__ -Drocprof_tool_EXPORTS -I/opt/rocm/include/roctracer/ext -I/home/ps/blake3/roc540-2/test -I/home/ps/blake3/roc540-2 -isystem /opt/rocm/include -isystem /opt/rocm/hsa/include/hsa -std=c++17 -Wall -Werror -Werror=return-type -fexceptions -fvisibility=hidden -fno-math-errno -fno-threadsafe-statics -fmerge-all-constants -fms-extensions -fmerge-all-constants -Werror=unused-result -fPIC -O3 -DNDEBUG -fPIC -pthread -MD -MT test/CMakeFiles/rocprof-tool.dir/util/hsa_rsrc_factory.cpp.o -MF CMakeFiles/rocprof-tool.dir/util/hsa_rsrc_factory.cpp.o.d -o CMakeFiles/rocprof-tool.dir/util/hsa_rsrc_factory.cpp.o -c /home/ps/blake3/roc540-2/test/util/hsa_rsrc_factory.cpp
+[ 76%] Building CXX object test/CMakeFiles/standalone_test.dir/util/perf_timer.cpp.o
+[ 82%] Building CXX object test/CMakeFiles/intercept_test.dir/util/hsa_rsrc_factory.cpp.o
+[ 82%] Building CXX object test/CMakeFiles/rocprof-tool.dir/util/perf_timer.cpp.o
+cd /home/ps/blake3/roc540-2/build/test && /usr/bin/c++ -DAQLPROF_NEW_API=1 -DHSA_DEPRECATED="" -DHSA_LARGE_MODEL="" -DLINUX -DLITTLEENDIAN_CPU=1 -DNEW_TRACE_API=1 -DUNIX_OS -DUSE_PROF_API=1 -D__AMD64__ -D__linux__ -D__x86_64__ -I/opt/rocm/include/roctracer/ext -I/home/ps/blake3/roc540-2/test -I/home/ps/blake3/roc540-2 -isystem /opt/rocm/include -isystem /opt/rocm/hsa/include/hsa -std=c++17 -Wall -Werror -Werror=return-type -fexceptions -fvisibility=hidden -fno-math-errno -fno-threadsafe-statics -fmerge-all-constants -fms-extensions -fmerge-all-constants -Werror=unused-result -fPIC -O3 -DNDEBUG -pthread -MD -MT test/CMakeFiles/standalone_test.dir/simple_convolution/simple_convolution.cpp.o -MF CMakeFiles/standalone_test.dir/simple_convolution/simple_convolution.cpp.o.d -o CMakeFiles/standalone_test.dir/simple_convolution/simple_convolution.cpp.o -c /home/ps/blake3/roc540-2/test/simple_convolution/simple_convolution.cpp
+cd /home/ps/blake3/roc540-2/build/test && /usr/bin/c++ -DAQLPROF_NEW_API=1 -DHSA_DEPRECATED="" -DHSA_LARGE_MODEL="" -DLINUX -DLITTLEENDIAN_CPU=1 -DNEW_TRACE_API=1 -DUNIX_OS -DUSE_PROF_API=1 -D__AMD64__ -D__linux__ -D__x86_64__ -I/opt/rocm/include/roctracer/ext -I/home/ps/blake3/roc540-2/test -I/home/ps/blake3/roc540-2 -isystem /opt/rocm/include -isystem /opt/rocm/hsa/include/hsa -std=c++17 -Wall -Werror -Werror=return-type -fexceptions -fvisibility=hidden -fno-math-errno -fno-threadsafe-statics -fmerge-all-constants -fms-extensions -fmerge-all-constants -Werror=unused-result -fPIC -O3 -DNDEBUG -pthread -MD -MT test/CMakeFiles/stand_intercept_test.dir/ctrl/test_hsa.cpp.o -MF CMakeFiles/stand_intercept_test.dir/ctrl/test_hsa.cpp.o.d -o CMakeFiles/stand_intercept_test.dir/ctrl/test_hsa.cpp.o -c /home/ps/blake3/roc540-2/test/ctrl/test_hsa.cpp
+[ 87%] Building CXX object test/CMakeFiles/stand_intercept_test.dir/simple_convolution/simple_convolution.cpp.o
+cd /home/ps/blake3/roc540-2/build/test && /usr/bin/c++ -DAQLPROF_NEW_API=1 -DHSA_DEPRECATED="" -DHSA_LARGE_MODEL="" -DLINUX -DLITTLEENDIAN_CPU=1 -DNEW_TRACE_API=1 -DUNIX_OS -DUSE_PROF_API=1 -D__AMD64__ -D__linux__ -D__x86_64__ -Dintercept_test_EXPORTS -I/opt/rocm/include/roctracer/ext -I/home/ps/blake3/roc540-2/test -I/home/ps/blake3/roc540-2 -isystem /opt/rocm/include -isystem /opt/rocm/hsa/include/hsa -std=c++17 -Wall -Werror -Werror=return-type -fexceptions -fvisibility=hidden -fno-math-errno -fno-threadsafe-statics -fmerge-all-constants -fms-extensions -fmerge-all-constants -Werror=unused-result -fPIC -O3 -DNDEBUG -fPIC -pthread -MD -MT test/CMakeFiles/intercept_test.dir/app/intercept_test.cpp.o -MF CMakeFiles/intercept_test.dir/app/intercept_test.cpp.o.d -o CMakeFiles/intercept_test.dir/app/intercept_test.cpp.o -c /home/ps/blake3/roc540-2/test/app/intercept_test.cpp
+[ 89%] Building CXX object test/CMakeFiles/intercept_test.dir/simple_convolution/simple_convolution.cpp.o
+cd /home/ps/blake3/roc540-2/build/test && /usr/bin/c++ -DAQLPROF_NEW_API=1 -DHSA_DEPRECATED="" -DHSA_LARGE_MODEL="" -DLINUX -DLITTLEENDIAN_CPU=1 -DNEW_TRACE_API=1 -DUNIX_OS -DUSE_PROF_API=1 -D__AMD64__ -D__linux__ -D__x86_64__ -Dintercept_test_EXPORTS -I/opt/rocm/include/roctracer/ext -I/home/ps/blake3/roc540-2/test -I/home/ps/blake3/roc540-2 -isystem /opt/rocm/include -isystem /opt/rocm/hsa/include/hsa -std=c++17 -Wall -Werror -Werror=return-type -fexceptions -fvisibility=hidden -fno-math-errno -fno-threadsafe-statics -fmerge-all-constants -fms-extensions -fmerge-all-constants -Werror=unused-result -fPIC -O3 -DNDEBUG -fPIC -pthread -MD -MT test/CMakeFiles/intercept_test.dir/ctrl/test_hsa.cpp.o -MF CMakeFiles/intercept_test.dir/ctrl/test_hsa.cpp.o.d -o CMakeFiles/intercept_test.dir/ctrl/test_hsa.cpp.o -c /home/ps/blake3/roc540-2/test/ctrl/test_hsa.cpp
+[ 87%] Building CXX object test/CMakeFiles/intercept_test.dir/util/perf_timer.cpp.o
+cd /home/ps/blake3/roc540-2/build/test && /usr/bin/c++ -DAQLPROF_NEW_API=1 -DHSA_DEPRECATED="" -DHSA_LARGE_MODEL="" -DLINUX -DLITTLEENDIAN_CPU=1 -DNEW_TRACE_API=1 -DUNIX_OS -DUSE_PROF_API=1 -D__AMD64__ -D__linux__ -D__x86_64__ -I/opt/rocm/include/roctracer/ext -I/home/ps/blake3/roc540-2/test -I/home/ps/blake3/roc540-2 -isystem /opt/rocm/include -isystem /opt/rocm/hsa/include/hsa -std=c++17 -Wall -Werror -Werror=return-type -fexceptions -fvisibility=hidden -fno-math-errno -fno-threadsafe-statics -fmerge-all-constants -fms-extensions -fmerge-all-constants -Werror=unused-result -fPIC -O3 -DNDEBUG -pthread -MD -MT test/CMakeFiles/stand_intercept_test.dir/util/perf_timer.cpp.o -MF CMakeFiles/stand_intercept_test.dir/util/perf_timer.cpp.o.d -o CMakeFiles/stand_intercept_test.dir/util/perf_timer.cpp.o -c /home/ps/blake3/roc540-2/test/util/perf_timer.cpp
+cd /home/ps/blake3/roc540-2/build/test && /usr/bin/c++ -DAQLPROF_NEW_API=1 -DHSA_DEPRECATED="" -DHSA_LARGE_MODEL="" -DLINUX -DLITTLEENDIAN_CPU=1 -DNEW_TRACE_API=1 -DUNIX_OS -DUSE_PROF_API=1 -D__AMD64__ -D__linux__ -D__x86_64__ -Dintercept_test_EXPORTS -I/opt/rocm/include/roctracer/ext -I/home/ps/blake3/roc540-2/test -I/home/ps/blake3/roc540-2 -isystem /opt/rocm/include -isystem /opt/rocm/hsa/include/hsa -std=c++17 -Wall -Werror -Werror=return-type -fexceptions -fvisibility=hidden -fno-math-errno -fno-threadsafe-statics -fmerge-all-constants -fms-extensions -fmerge-all-constants -Werror=unused-result -fPIC -O3 -DNDEBUG -fPIC -pthread -MD -MT test/CMakeFiles/intercept_test.dir/util/hsa_rsrc_factory.cpp.o -MF CMakeFiles/intercept_test.dir/util/hsa_rsrc_factory.cpp.o.d -o CMakeFiles/intercept_test.dir/util/hsa_rsrc_factory.cpp.o -c /home/ps/blake3/roc540-2/test/util/hsa_rsrc_factory.cpp
+cd /home/ps/blake3/roc540-2/build/test && /usr/bin/c++ -DAQLPROF_NEW_API=1 -DHSA_DEPRECATED="" -DHSA_LARGE_MODEL="" -DLINUX -DLITTLEENDIAN_CPU=1 -DNEW_TRACE_API=1 -DUNIX_OS -DUSE_PROF_API=1 -D__AMD64__ -D__linux__ -D__x86_64__ -I/opt/rocm/include/roctracer/ext -I/home/ps/blake3/roc540-2/test -I/home/ps/blake3/roc540-2 -isystem /opt/rocm/include -isystem /opt/rocm/hsa/include/hsa -std=c++17 -Wall -Werror -Werror=return-type -fexceptions -fvisibility=hidden -fno-math-errno -fno-threadsafe-statics -fmerge-all-constants -fms-extensions -fmerge-all-constants -Werror=unused-result -fPIC -O3 -DNDEBUG -pthread -MD -MT test/CMakeFiles/stand_intercept_test.dir/simple_convolution/simple_convolution.cpp.o -MF CMakeFiles/stand_intercept_test.dir/simple_convolution/simple_convolution.cpp.o.d -o CMakeFiles/stand_intercept_test.dir/simple_convolution/simple_convolution.cpp.o -c /home/ps/blake3/roc540-2/test/simple_convolution/simple_convolution.cpp
+cd /home/ps/blake3/roc540-2/build/test && /usr/bin/c++ -DAQLPROF_NEW_API=1 -DHSA_DEPRECATED="" -DHSA_LARGE_MODEL="" -DLINUX -DLITTLEENDIAN_CPU=1 -DNEW_TRACE_API=1 -DUNIX_OS -DUSE_PROF_API=1 -D__AMD64__ -D__linux__ -D__x86_64__ -Drocprof_tool_EXPORTS -I/opt/rocm/include/roctracer/ext -I/home/ps/blake3/roc540-2/test -I/home/ps/blake3/roc540-2 -isystem /opt/rocm/include -isystem /opt/rocm/hsa/include/hsa -std=c++17 -Wall -Werror -Werror=return-type -fexceptions -fvisibility=hidden -fno-math-errno -fno-threadsafe-statics -fmerge-all-constants -fms-extensions -fmerge-all-constants -Werror=unused-result -fPIC -O3 -DNDEBUG -fPIC -pthread -MD -MT test/CMakeFiles/rocprof-tool.dir/util/perf_timer.cpp.o -MF CMakeFiles/rocprof-tool.dir/util/perf_timer.cpp.o.d -o CMakeFiles/rocprof-tool.dir/util/perf_timer.cpp.o -c /home/ps/blake3/roc540-2/test/util/perf_timer.cpp
+cd /home/ps/blake3/roc540-2/build/test && /usr/bin/c++ -DAQLPROF_NEW_API=1 -DHSA_DEPRECATED="" -DHSA_LARGE_MODEL="" -DLINUX -DLITTLEENDIAN_CPU=1 -DNEW_TRACE_API=1 -DUNIX_OS -DUSE_PROF_API=1 -D__AMD64__ -D__linux__ -D__x86_64__ -I/opt/rocm/include/roctracer/ext -I/home/ps/blake3/roc540-2/test -I/home/ps/blake3/roc540-2 -isystem /opt/rocm/include -isystem /opt/rocm/hsa/include/hsa -std=c++17 -Wall -Werror -Werror=return-type -fexceptions -fvisibility=hidden -fno-math-errno -fno-threadsafe-statics -fmerge-all-constants -fms-extensions -fmerge-all-constants -Werror=unused-result -fPIC -O3 -DNDEBUG -pthread -MD -MT test/CMakeFiles/standalone_test.dir/util/perf_timer.cpp.o -MF CMakeFiles/standalone_test.dir/util/perf_timer.cpp.o.d -o CMakeFiles/standalone_test.dir/util/perf_timer.cpp.o -c /home/ps/blake3/roc540-2/test/util/perf_timer.cpp
+cd /home/ps/blake3/roc540-2/build/test && /usr/bin/c++ -DAQLPROF_NEW_API=1 -DHSA_DEPRECATED="" -DHSA_LARGE_MODEL="" -DLINUX -DLITTLEENDIAN_CPU=1 -DNEW_TRACE_API=1 -DUNIX_OS -DUSE_PROF_API=1 -D__AMD64__ -D__linux__ -D__x86_64__ -Dintercept_test_EXPORTS -I/opt/rocm/include/roctracer/ext -I/home/ps/blake3/roc540-2/test -I/home/ps/blake3/roc540-2 -isystem /opt/rocm/include -isystem /opt/rocm/hsa/include/hsa -std=c++17 -Wall -Werror -Werror=return-type -fexceptions -fvisibility=hidden -fno-math-errno -fno-threadsafe-statics -fmerge-all-constants -fms-extensions -fmerge-all-constants -Werror=unused-result -fPIC -O3 -DNDEBUG -fPIC -pthread -MD -MT test/CMakeFiles/intercept_test.dir/simple_convolution/simple_convolution.cpp.o -MF CMakeFiles/intercept_test.dir/simple_convolution/simple_convolution.cpp.o.d -o CMakeFiles/intercept_test.dir/simple_convolution/simple_convolution.cpp.o -c /home/ps/blake3/roc540-2/test/simple_convolution/simple_convolution.cpp
+cd /home/ps/blake3/roc540-2/build/test && /usr/bin/c++ -DAQLPROF_NEW_API=1 -DHSA_DEPRECATED="" -DHSA_LARGE_MODEL="" -DLINUX -DLITTLEENDIAN_CPU=1 -DNEW_TRACE_API=1 -DUNIX_OS -DUSE_PROF_API=1 -D__AMD64__ -D__linux__ -D__x86_64__ -Dintercept_test_EXPORTS -I/opt/rocm/include/roctracer/ext -I/home/ps/blake3/roc540-2/test -I/home/ps/blake3/roc540-2 -isystem /opt/rocm/include -isystem /opt/rocm/hsa/include/hsa -std=c++17 -Wall -Werror -Werror=return-type -fexceptions -fvisibility=hidden -fno-math-errno -fno-threadsafe-statics -fmerge-all-constants -fms-extensions -fmerge-all-constants -Werror=unused-result -fPIC -O3 -DNDEBUG -fPIC -pthread -MD -MT test/CMakeFiles/intercept_test.dir/util/perf_timer.cpp.o -MF CMakeFiles/intercept_test.dir/util/perf_timer.cpp.o.d -o CMakeFiles/intercept_test.dir/util/perf_timer.cpp.o -c /home/ps/blake3/roc540-2/test/util/perf_timer.cpp
+[ 92%] Linking CXX shared library libintercept_test.so
+cd /home/ps/blake3/roc540-2/build/test && /opt/cmake-3.24.2/bin/cmake -E cmake_link_script CMakeFiles/intercept_test.dir/link.txt --verbose=1
+/usr/bin/c++ -fPIC  -std=c++17 -Wall -Werror -Werror=return-type -fexceptions -fvisibility=hidden -fno-math-errno -fno-threadsafe-statics -fmerge-all-constants -fms-extensions -fmerge-all-constants -Werror=unused-result -fPIC -O3 -DNDEBUG "-Bdynamic -z,neexecstack"  -Wl,--enable-new-dtags -Wl,--rpath,/opt/rocm/lib:/opt/rocm/lib64 -shared -Wl,-soname,libintercept_test.so -o libintercept_test.so CMakeFiles/intercept_test.dir/app/intercept_test.cpp.o CMakeFiles/intercept_test.dir/ctrl/test_hsa.cpp.o CMakeFiles/intercept_test.dir/util/hsa_rsrc_factory.cpp.o CMakeFiles/intercept_test.dir/util/perf_timer.cpp.o CMakeFiles/intercept_test.dir/simple_convolution/simple_convolution.cpp.o  -Wl,-rpath,/home/ps/blake3/roc540-2/build:/opt/rocm/lib ../librocprofiler64.so.1.0.0 /opt/rocm/lib/libhsa-runtime64.so.1.7.50400 /opt/rocm/lib/libhsakmt.a -ldl -L/usr/lib/x86_64-linux-gnu -ldrm -ldrm_amdgpu -lpthread -lrt /usr/lib/x86_64-linux-gnu/libc.so.6 -lnuma -pthread 
+[ 94%] Linking CXX executable standalone_test
+cd /home/ps/blake3/roc540-2/build/test && /opt/cmake-3.24.2/bin/cmake -E cmake_link_script CMakeFiles/standalone_test.dir/link.txt --verbose=1
+/usr/bin/c++  -std=c++17 -Wall -Werror -Werror=return-type -fexceptions -fvisibility=hidden -fno-math-errno -fno-threadsafe-statics -fmerge-all-constants -fms-extensions -fmerge-all-constants -Werror=unused-result -fPIC -O3 -DNDEBUG -rdynamic "-Bdynamic -z,neexecstack" CMakeFiles/standalone_test.dir/app/standalone_test.cpp.o CMakeFiles/standalone_test.dir/ctrl/test_hsa.cpp.o CMakeFiles/standalone_test.dir/util/hsa_rsrc_factory.cpp.o CMakeFiles/standalone_test.dir/util/perf_timer.cpp.o CMakeFiles/standalone_test.dir/simple_convolution/simple_convolution.cpp.o -o standalone_test  -Wl,-rpath,/home/ps/blake3/roc540-2/build:/opt/rocm/lib ../librocprofiler64.so.1.0.0 /opt/rocm/lib/libhsa-runtime64.so.1.7.50400 /opt/rocm/lib/libhsakmt.a -ldl -L/usr/lib/x86_64-linux-gnu -ldrm -ldrm_amdgpu -lpthread -lrt /usr/lib/x86_64-linux-gnu/libc.so.6 -lnuma -pthread 
+[ 97%] Linking CXX executable stand_intercept_test
+cd /home/ps/blake3/roc540-2/build/test && /opt/cmake-3.24.2/bin/cmake -E cmake_link_script CMakeFiles/stand_intercept_test.dir/link.txt --verbose=1
+/usr/bin/c++  -std=c++17 -Wall -Werror -Werror=return-type -fexceptions -fvisibility=hidden -fno-math-errno -fno-threadsafe-statics -fmerge-all-constants -fms-extensions -fmerge-all-constants -Werror=unused-result -fPIC -O3 -DNDEBUG -rdynamic "-Bdynamic -z,neexecstack" CMakeFiles/stand_intercept_test.dir/app/stand_intercept_test.cpp.o CMakeFiles/stand_intercept_test.dir/ctrl/test_hsa.cpp.o CMakeFiles/stand_intercept_test.dir/util/hsa_rsrc_factory.cpp.o CMakeFiles/stand_intercept_test.dir/util/perf_timer.cpp.o CMakeFiles/stand_intercept_test.dir/simple_convolution/simple_convolution.cpp.o -o stand_intercept_test  -Wl,-rpath,/home/ps/blake3/roc540-2/build:/opt/rocm/lib ../librocprofiler64.so.1.0.0 /opt/rocm/lib/libhsa-runtime64.so.1.7.50400 /opt/rocm/lib/libhsakmt.a -ldl -L/usr/lib/x86_64-linux-gnu -ldrm -ldrm_amdgpu -lpthread -lrt /usr/lib/x86_64-linux-gnu/libc.so.6 -lnuma -pthread 
+make[2]: Leaving directory '/home/ps/blake3/roc540-2/build'
+[ 97%] Built target intercept_test
+make[2]: Leaving directory '/home/ps/blake3/roc540-2/build'
+[ 97%] Built target standalone_test
+make[2]: Leaving directory '/home/ps/blake3/roc540-2/build'
+[ 97%] Built target stand_intercept_test
+[100%] Linking CXX shared library librocprof-tool.so
+cd /home/ps/blake3/roc540-2/build/test && /opt/cmake-3.24.2/bin/cmake -E cmake_link_script CMakeFiles/rocprof-tool.dir/link.txt --verbose=1
+/usr/bin/c++ -fPIC  -std=c++17 -Wall -Werror -Werror=return-type -fexceptions -fvisibility=hidden -fno-math-errno -fno-threadsafe-statics -fmerge-all-constants -fms-extensions -fmerge-all-constants -Werror=unused-result -fPIC -O3 -DNDEBUG "-Bdynamic -z,neexecstack"  -Wl,--enable-new-dtags -Wl,--rpath,/opt/rocm/lib:/opt/rocm/lib64 -shared -Wl,-soname,librocprof-tool.so -o librocprof-tool.so "CMakeFiles/rocprof-tool.dir/tool/tool.cpp.o" "CMakeFiles/rocprof-tool.dir/util/hsa_rsrc_factory.cpp.o" "CMakeFiles/rocprof-tool.dir/util/perf_timer.cpp.o"  -Wl,-rpath,/home/ps/blake3/roc540-2/build:/opt/rocm/lib ../librocprofiler64.so.1.0.0 /opt/rocm/lib/libhsa-runtime64.so.1.7.50400 -ldl -pthread 
+make[2]: Leaving directory '/home/ps/blake3/roc540-2/build'
+[100%] Built target rocprof-tool
+make[1]: Leaving directory '/home/ps/blake3/roc540-2/build'
+/opt/cmake-3.24.2/bin/cmake -E cmake_progress_start /home/ps/blake3/roc540-2/build/CMakeFiles 0
+/opt/cmake-3.24.2/bin/cmake -S/home/ps/blake3/roc540-2 -B/home/ps/blake3/roc540-2/build --check-build-system CMakeFiles/Makefile.cmake 0
+make  -f CMakeFiles/Makefile2 mytest
+make[1]: Entering directory '/home/ps/blake3/roc540-2/build'
+/opt/cmake-3.24.2/bin/cmake -S/home/ps/blake3/roc540-2 -B/home/ps/blake3/roc540-2/build --check-build-system CMakeFiles/Makefile.cmake 0
+/opt/cmake-3.24.2/bin/cmake -E cmake_progress_start /home/ps/blake3/roc540-2/build/CMakeFiles 0
+make  -f CMakeFiles/Makefile2 test/CMakeFiles/mytest.dir/all
+make[2]: Entering directory '/home/ps/blake3/roc540-2/build'
+make  -f test/CMakeFiles/mytest.dir/build.make test/CMakeFiles/mytest.dir/depend
+make[3]: Entering directory '/home/ps/blake3/roc540-2/build'
+cd /home/ps/blake3/roc540-2/build && /opt/cmake-3.24.2/bin/cmake -E cmake_depends "Unix Makefiles" /home/ps/blake3/roc540-2 /home/ps/blake3/roc540-2/test /home/ps/blake3/roc540-2/build /home/ps/blake3/roc540-2/build/test /home/ps/blake3/roc540-2/build/test/CMakeFiles/mytest.dir/DependInfo.cmake --color=
+make[3]: Leaving directory '/home/ps/blake3/roc540-2/build'
+make  -f test/CMakeFiles/mytest.dir/build.make test/CMakeFiles/mytest.dir/build
+make[3]: Entering directory '/home/ps/blake3/roc540-2/build'
+cd /home/ps/blake3/roc540-2/build/test && sh -xc /home/ps/blake3/roc540-2/test/../bin/build_kernel.sh\ /home/ps/blake3/roc540-2/test/dummy_kernel/dummy_kernel\ /home/ps/blake3/roc540-2/build\ '/opt/rocm'\ ''
++ /home/ps/blake3/roc540-2/test/../bin/build_kernel.sh /home/ps/blake3/roc540-2/test/dummy_kernel/dummy_kernel /home/ps/blake3/roc540-2/build /opt/rocm
++ SO_EXT=hsaco
++ TEST_NAME=/home/ps/blake3/roc540-2/test/dummy_kernel/dummy_kernel
++ DST_DIR=/home/ps/blake3/roc540-2/build
++ ROCM_DIR=/opt/rocm
++ TGT_LIST=
++ [ -z /home/ps/blake3/roc540-2/test/dummy_kernel/dummy_kernel ]
++ sed -e s/_./\U&\E/g -e s/_//g
++ basename /home/ps/blake3/roc540-2/test/dummy_kernel/dummy_kernel
++ echo _dummy_kernel
++ OBJ_NAME=DummyKernel
++ [ -z /home/ps/blake3/roc540-2/build ]
++ [ -z /opt/rocm ]
++ [ -z  ]
++ /opt/rocm/bin/rocminfo
++ grep amdgcn-amd-amdhsa--
++ head -n 1
++ sed -n s/^.*amdgcn-amd-amdhsa--\(\w*\).*$/\1/p
++ TGT_LIST=gfx1030
++ [ -z gfx1030 ]
++ OCL_VER=2.0
++ [ -e /opt/rocm/llvm ]
++ LLVM_DIR=/opt/rocm/llvm
++ LIB_DIR=/opt/rocm/lib
++ [ -e /opt/rocm/lib/bitcode/opencl.amdgcn.bc ]
++ [ -e /opt/rocm/lib/opencl.amdgcn.bc ]
++ [ -e /opt/rocm/amdgcn/bitcode/opencl.bc ]
++ BC_DIR=/opt/rocm/amdgcn/bitcode
++ CLANG_ROOT=/opt/rocm/llvm/lib/clang
++ ls -d /opt/rocm/llvm/lib/clang/15.0.0
++ head -n 1
++ CLANG_DIR=/opt/rocm/llvm/lib/clang/15.0.0
++ [ /opt/rocm/llvm/lib/clang/15.0.0 =  ]
++ BIN_DIR=/opt/rocm/llvm/bin
++ INC_DIR=/opt/rocm/llvm/lib/clang/15.0.0/include
++ [ -e /opt/rocm/amdgcn/bitcode/opencl.amdgcn.bc ]
++ BITCODE_OPTS=--hip-device-lib-path=/opt/rocm/amdgcn/bitcode
++ OBJ_PREF=gfx1030
++ OBJ_FILE=gfx1030_DummyKernel.hsaco
++ /opt/rocm/llvm/bin/clang -cl-std=CL2.0 -include /opt/rocm/llvm/lib/clang/15.0.0/include/opencl-c.h --hip-device-lib-path=/opt/rocm/amdgcn/bitcode -target amdgcn-amd-amdhsa -mcpu=gfx1030 /home/ps/blake3/roc540-2/test/dummy_kernel/dummy_kernel.cl -o /home/ps/blake3/roc540-2/build/gfx1030_DummyKernel.hsaco
++ echo 'gfx1030_DummyKernel.hsaco' generated
+'gfx1030_DummyKernel.hsaco' generated
++ exit 0
+cd /home/ps/blake3/roc540-2/build/test && sh -xc /home/ps/blake3/roc540-2/test/../bin/build_kernel.sh\ /home/ps/blake3/roc540-2/test/simple_convolution/simple_convolution\ /home/ps/blake3/roc540-2/build\ '/opt/rocm'\ ''
++ /home/ps/blake3/roc540-2/test/../bin/build_kernel.sh /home/ps/blake3/roc540-2/test/simple_convolution/simple_convolution /home/ps/blake3/roc540-2/build /opt/rocm
++ SO_EXT=hsaco
++ TEST_NAME=/home/ps/blake3/roc540-2/test/simple_convolution/simple_convolution
++ DST_DIR=/home/ps/blake3/roc540-2/build
++ ROCM_DIR=/opt/rocm
++ TGT_LIST=
++ [ -z /home/ps/blake3/roc540-2/test/simple_convolution/simple_convolution ]
++ basename /home/ps/blake3/roc540-2/test/simple_convolution/simple_convolution
++ sed -e s/_./\U&\E/g -e s/_//g
++ echo _simple_convolution
++ OBJ_NAME=SimpleConvolution
++ [ -z /home/ps/blake3/roc540-2/build ]
++ [ -z /opt/rocm ]
++ [ -z  ]
++ /opt/rocm/bin/rocminfo
++ grep amdgcn-amd-amdhsa--
++ head -n 1
++ sed -n s/^.*amdgcn-amd-amdhsa--\(\w*\).*$/\1/p
++ TGT_LIST=gfx1030
++ [ -z gfx1030 ]
++ OCL_VER=2.0
++ [ -e /opt/rocm/llvm ]
++ LLVM_DIR=/opt/rocm/llvm
++ LIB_DIR=/opt/rocm/lib
++ [ -e /opt/rocm/lib/bitcode/opencl.amdgcn.bc ]
++ [ -e /opt/rocm/lib/opencl.amdgcn.bc ]
++ [ -e /opt/rocm/amdgcn/bitcode/opencl.bc ]
++ BC_DIR=/opt/rocm/amdgcn/bitcode
++ CLANG_ROOT=/opt/rocm/llvm/lib/clang
++ ls -d /opt/rocm/llvm/lib/clang/15.0.0
++ head -n 1
++ CLANG_DIR=/opt/rocm/llvm/lib/clang/15.0.0
++ [ /opt/rocm/llvm/lib/clang/15.0.0 =  ]
++ BIN_DIR=/opt/rocm/llvm/bin
++ INC_DIR=/opt/rocm/llvm/lib/clang/15.0.0/include
++ [ -e /opt/rocm/amdgcn/bitcode/opencl.amdgcn.bc ]
++ BITCODE_OPTS=--hip-device-lib-path=/opt/rocm/amdgcn/bitcode
++ OBJ_PREF=gfx1030
++ OBJ_FILE=gfx1030_SimpleConvolution.hsaco
++ /opt/rocm/llvm/bin/clang -cl-std=CL2.0 -include /opt/rocm/llvm/lib/clang/15.0.0/include/opencl-c.h --hip-device-lib-path=/opt/rocm/amdgcn/bitcode -target amdgcn-amd-amdhsa -mcpu=gfx1030 /home/ps/blake3/roc540-2/test/simple_convolution/simple_convolution.cl -o /home/ps/blake3/roc540-2/build/gfx1030_SimpleConvolution.hsaco
++ echo 'gfx1030_SimpleConvolution.hsaco' generated
+'gfx1030_SimpleConvolution.hsaco' generated
++ exit 0
+make[3]: Leaving directory '/home/ps/blake3/roc540-2/build'
+Built target mytest
+make[2]: Leaving directory '/home/ps/blake3/roc540-2/build'
+/opt/cmake-3.24.2/bin/cmake -E cmake_progress_start /home/ps/blake3/roc540-2/build/CMakeFiles 0
+make[1]: Leaving directory '/home/ps/blake3/roc540-2/build'

@@ -124,6 +124,7 @@ class SimpleProxyQueue : public ProxyQueue {
   }
 
   void Submit(const packet_t* packet) {
+    printf("Submit222\n");
     // Compute the write index of queue
     const uint64_t que_idx = hsa_queue_load_write_index_relaxed_fn(queue_);
 

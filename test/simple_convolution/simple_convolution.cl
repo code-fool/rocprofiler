@@ -38,7 +38,7 @@ __kernel void SimpleConvolution(__global  uint  * output,
                                 const     uint2  maskDimensions) {
 
   uint tid   = get_global_id(0);
-
+  // printf("冲冲冲冲冲冲冲---%d\n",tid);
   uint width  = inputDimensions.x;
   uint height = inputDimensions.y;
 

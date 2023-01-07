@@ -203,6 +203,7 @@ class Context {
     Context* obj = new Context(agent_info, queue, info, info_count, handler, handler_arg);
     if (obj == NULL) EXC_RAISING(HSA_STATUS_ERROR, "allocation error");
     try {
+      printf("info_count==%d\n",info_count);
       obj->Construct(agent_info, queue, info, info_count, handler, handler_arg);
     } catch(...) {
       delete obj;
@@ -249,8 +250,21 @@ class Context {
 
   void Start(const uint32_t& group_index, Queue* const queue = NULL) {
     const pkt_vector_t& start_packets = StartPackets(group_index);
+    std::cout<<"start package数量是"<<start_packets.size()<<std::endl;
     Queue* const submit_queue = (queue != NULL) ? queue : queue_;
+    printf("在submit前\n");
     submit_queue->Submit(&start_packets[0], start_packets.size());
+    // submit_queue->Submit(&start_packets[0]);
+  }
+
+  void Start0(const uint32_t& group_index, Queue* const queue = NULL) {
+    const pkt_vector_t& start_packets = StartPackets(group_index);
+    std::cout<<"start package数量是"<<start_packets.size()<<std::endl;
+    Queue* const submit_queue = (queue != NULL) ? queue : queue_;
+    printf("在submit前\n");
+    std::cout<<submit_queue<<std::endl;
+    submit_queue->Submit(&start_packets[0], start_packets.size());
+    // submit_queue->Submit(&start_packets[0]);
   }
   void Stop(const uint32_t& group_index, Queue* const queue = NULL) {
     const pkt_vector_t& stop_packets = StopPackets(group_index);
@@ -259,6 +273,7 @@ class Context {
   }
   void Read(const uint32_t& group_index, Queue* const queue = NULL) {
     const pkt_vector_t& read_packets = ReadPackets(group_index);
+    printf("read_packets.size()==%ld\n",read_packets.size());
     if (read_packets.size() == 0) EXC_RAISING(HSA_STATUS_ERROR, "Read API disabled");
     Queue* const submit_queue = (queue != NULL) ? queue : queue_;
     submit_queue->Submit(&read_packets[0], read_packets.size());
@@ -426,7 +441,7 @@ class Context {
 
     // Adding zero group, always present
     if (info_count) set_.push_back(Group(agent_info_, this, 0));
-
+    printf("整个count是--%d\n",info_count);
     // Processing input features
     for (unsigned i = 0; i < info_count; ++i) {
       rocprofiler_feature_t* info = &info_array[i];
@@ -482,9 +497,11 @@ class Context {
           }
           block_status.counter_index += 1;
           if (block_status.group_index >= set_.size()) {
+            printf("进来push\n");
             set_.push_back(Group(agent_info_, this, block_status.group_index));
           }
           const uint32_t group_index = block_status.group_index;
+          printf("进来insert\n");
           set_[group_index].Insert(profile_info_t{event, NULL, 0, info});
         }
       } else if (kind & ROCPROFILER_FEATURE_KIND_TRACE) {  // Processing traces features

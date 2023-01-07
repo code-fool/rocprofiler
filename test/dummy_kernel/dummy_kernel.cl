@@ -19,10 +19,12 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
 *******************************************************************************/
-
+// #include <stdio.h>
 /**
  dummy kernel
  */
 __kernel void DummyKernel() {
   uint tid   = get_global_id(0);
+  // printf("tid==%d\n",tid);
+  uint gid   = get_global_size(0);
 }

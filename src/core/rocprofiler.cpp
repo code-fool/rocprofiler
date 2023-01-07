@@ -190,12 +190,14 @@ uint32_t LoadTool() {
     }
     tool_handler_t handler = reinterpret_cast<tool_handler_t>(dlsym(tool_handle, "OnLoadTool"));
     tool_handler_prop_t handler_prop = reinterpret_cast<tool_handler_prop_t>(dlsym(tool_handle, "OnLoadToolProp"));
+    printf("看一看这个夹缝在什么地方\n");
     if ((handler == NULL) && (handler_prop == NULL)) {
       fprintf(stderr, "ROCProfiler: tool library corrupted, OnLoadTool()/OnLoadToolProp() method is expected\n");
       fprintf(stderr, "%s\n", dlerror());
       abort();
     }
     tool_handler_t on_unload_handler = reinterpret_cast<tool_handler_t>(dlsym(tool_handle, "OnUnloadTool"));
+    printf("看一看这个夹缝在什么地方2222222222\n");
     if (on_unload_handler == NULL) {
       fprintf(stderr, "ROCProfiler: tool library corrupted, OnUnloadTool() method is expected\n");
       fprintf(stderr, "%s\n", dlerror());
@@ -212,7 +214,7 @@ uint32_t LoadTool() {
 
     if (handler) handler();
     else if (handler_prop) handler_prop(&settings);
-
+    printf("看一看这个夹缝在什么地方33333333\n");
     TraceProfile::SetSize(settings.trace_size);
     TraceProfile::SetLocal(settings.trace_local != 0);
     util::HsaRsrcFactory::SetTimeoutNs(settings.timeout);
@@ -394,7 +396,7 @@ CONTEXT_INSTANTIATE();
 //
 extern "C" {
 
-// HSA-runtime tool on-load method
+// HSA-runtime tool on-load method 这里就是一切的开端了··· 可怕啊···
 PUBLIC_API bool OnLoad(HsaApiTable* table, uint64_t runtime_version, uint64_t failed_tool_count,
                        const char* const* failed_tool_names) {
   ONLOAD_TRACE_BEG();
@@ -425,13 +427,14 @@ PUBLIC_API bool OnLoad(HsaApiTable* table, uint64_t runtime_version, uint64_t fa
         return false;
     }
   }
-
+  printf("马上要进来LoadTool\n");
   // always enable excutable tracking
   rocprofiler::util::HsaRsrcFactory::EnableExecutableTracking(table);
 
   // Loading a tool lib and setting of intercept mode
   const uint32_t intercept_mode_mask = rocprofiler::LoadTool();
 
+  printf("现在是出来了LoadTool\n");
   if (intercept_mode_mask & rocprofiler::MEMCOPY_INTERCEPT_MODE) {
     hsa_status_t status = hsa_amd_profiling_async_copy_enable(true);
     if (status != HSA_STATUS_SUCCESS) EXC_ABORT(status, "hsa_amd_profiling_async_copy_enable");
@@ -439,6 +442,7 @@ PUBLIC_API bool OnLoad(HsaApiTable* table, uint64_t runtime_version, uint64_t fa
     rocprofiler::hsa_amd_memory_async_copy_rect_fn = table->amd_ext_->hsa_amd_memory_async_copy_rect_fn;
     table->amd_ext_->hsa_amd_memory_async_copy_fn = rocprofiler::hsa_amd_memory_async_copy_interceptor;
     table->amd_ext_->hsa_amd_memory_async_copy_rect_fn = rocprofiler::hsa_amd_memory_async_copy_rect_interceptor;
+    // printf("现在是出来了LoadTool11111\n");
   }
   if (intercept_mode_mask & rocprofiler::HSA_INTERCEPT_MODE) {
     if (intercept_mode_mask & rocprofiler::MEMCOPY_INTERCEPT_MODE) {
@@ -446,14 +450,17 @@ PUBLIC_API bool OnLoad(HsaApiTable* table, uint64_t runtime_version, uint64_t fa
     }
     rocprofiler::HsaInterceptor::Enable(true);
     rocprofiler::HsaInterceptor::HsaIntercept(table);
+    printf("现在是出来了LoadTool22222\n");
   }
 
   // HSA intercepting
   if (intercept_env_value != 0) {
     rocprofiler::ProxyQueue::HsaIntercept(table);
     rocprofiler::InterceptQueue::HsaIntercept(table);
+    printf("现在是出来了LoadTool33333\n");
   } else {
     rocprofiler::StandaloneIntercept();
+    // printf("现在是出来了LoadTool44444\n");
   }
 
   ONLOAD_TRACE("end intercept_mode(" << std::hex << intercept_env_value << ")" <<
@@ -484,6 +491,8 @@ PUBLIC_API hsa_status_t rocprofiler_error_string(const char** str) {
 PUBLIC_API hsa_status_t rocprofiler_open(hsa_agent_t agent, rocprofiler_feature_t* features,
                                          uint32_t feature_count, rocprofiler_t** handle, uint32_t mode,
                                          rocprofiler_properties_t* properties) {
+  printf("第一个日志！！！\n");                                        
+  
   API_METHOD_PREFIX
   rocprofiler::util::HsaRsrcFactory* hsa_rsrc = &rocprofiler::util::HsaRsrcFactory::Instance();
   const rocprofiler::util::AgentInfo* agent_info = hsa_rsrc->GetAgentInfo(agent);
@@ -506,8 +515,10 @@ PUBLIC_API hsa_status_t rocprofiler_open(hsa_agent_t agent, rocprofiler_feature_
   }
 
   rocprofiler::Context** context_ret = reinterpret_cast<rocprofiler::Context**>(handle);
+  // printf();
   *context_ret = rocprofiler::Context::Create(agent_info, queue, features, feature_count,
                                               properties->handler, properties->handler_arg);
+  printf("能够正常拿到context没问题\n");                                            
   API_METHOD_SUFFIX
 }
 
@@ -557,9 +568,20 @@ PUBLIC_API hsa_status_t rocprofiler_get_group(rocprofiler_t* handle, uint32_t gr
 PUBLIC_API hsa_status_t rocprofiler_start(rocprofiler_t* handle, uint32_t group_index) {
   API_METHOD_PREFIX
   rocprofiler::Context* context = reinterpret_cast<rocprofiler::Context*>(handle);
+  printf("可以开始Start??\n");
   context->Start(group_index);
   API_METHOD_SUFFIX
 }
+
+// Start0 profiling
+PUBLIC_API hsa_status_t rocprofiler_start0(rocprofiler_t* handle, uint32_t group_index) {
+  API_METHOD_PREFIX
+  rocprofiler::Context* context = reinterpret_cast<rocprofiler::Context*>(handle);
+  printf("0可以开始Start??\n");
+  context->Start0(group_index);
+  API_METHOD_SUFFIX
+}
+
 
 // Stop profiling
 PUBLIC_API hsa_status_t rocprofiler_stop(rocprofiler_t* handle, uint32_t group_index) {

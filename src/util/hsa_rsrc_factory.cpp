@@ -606,7 +606,7 @@ bool HsaRsrcFactory::LoadAndFinalize(const AgentInfo* agent_info, const char* br
   // Build the code object filename
   std::string filename(brig_path);
   std::clog << "Code object filename: " << filename << std::endl;
-
+  std::cout << "ssssssssssssCode object filename: " << filename << std::endl;
   // Open the file containing code object
   hsa_file_t file_handle = open(filename.c_str(), O_RDONLY);
   if (file_handle == -1) {

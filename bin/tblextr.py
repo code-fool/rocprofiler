@@ -71,8 +71,8 @@ def activity_record_patching(db, ops_table_name, kernel_found, kernel_name, stre
 
 # global vars
 table_descr = [
-  ['Index', 'KernelName'],
-  {'Index': 'INTEGER', 'KernelName': 'TEXT'}
+  ['Index00', 'KernelName11'],
+  {'Index22': 'INTEGER', 'KernelName33': 'TEXT'}
 ]
 var_list = table_descr[0]
 var_table = {}

@@ -597,6 +597,7 @@ bool HsaRsrcFactory::LoadAndFinalize(const AgentInfo* agent_info, const char* br
   std::clog << "Code object filename: " << filename << std::endl;
 
   // Open the file containing code object
+  printf("经过8\n");
   hsa_file_t file_handle = open(filename.c_str(), O_RDONLY);
   if (file_handle == -1) {
     std::cerr << "Error: failed to load '" << filename << "'" << std::endl;
@@ -606,6 +607,7 @@ bool HsaRsrcFactory::LoadAndFinalize(const AgentInfo* agent_info, const char* br
 
   // Create code object reader
   hsa_code_object_reader_t code_obj_rdr = {0};
+  printf("经过9\n");
   status = hsa_api_.hsa_code_object_reader_create_from_file(file_handle, &code_obj_rdr);
   if (status != HSA_STATUS_SUCCESS) {
     std::cerr << "Failed to create code object reader '" << filename << "'" << std::endl;

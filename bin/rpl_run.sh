@@ -24,17 +24,23 @@
 
 time_stamp=`date +%y%m%d_%H%M%S`
 BIN_DIR=$(dirname $(realpath ${BASH_SOURCE[0]}))
-ROOT_DIR=$(dirname $BIN_DIR)
+# ROOT_DIR=$(dirname $BIN_DIR)
+ROOT_DIR="/opt/rocm-5.4.0"
 RUN_DIR=`pwd`
 TMP_DIR="/tmp"
 DATA_DIR="rpl_data_${time_stamp}_$$"
 
-RPL_PATH=$ROOT_DIR/lib
-TLIB_PATH=$RPL_PATH/rocprofiler
+# RPL_PATH=$ROOT_DIR/lib
+RPL_PATH="/home/ps/blake3/roc540-2/build" 
+# TLIB_PATH=$RPL_PATH/rocprofiler
+TLIB_PATH="/home/ps/blake3/roc540-2/build/test"
+
 TTLIB_PATH=$ROOT_DIR/lib/roctracer
 ROCM_LIB_PATH=$ROOT_DIR/lib
 PROF_BIN_DIR=$ROOT_DIR/libexec/rocprofiler
-
+echo "0--"$TTLIB_PATH
+echo "1--"$ROCM_LIB_PATH
+echo "2--"$PROF_BIN_DIR
 if [ -z "$ROCP_PYTHON_VERSION" ] ; then
   ROCP_PYTHON_VERSION=python3
 fi
@@ -66,10 +72,15 @@ MY_HSA_TOOLS_LIB="$RPL_PATH/librocprofiler64.so"
 export ROCP_TOOL_LIB=$TLIB_PATH/librocprof-tool.so
 # Enabling HSA dispatches intercepting by ROC PRofiler
 export ROCP_HSA_INTERCEPT=1
+# export ROCP_HSA_INTERCEPT=2
 # Disabling internal ROC Profiler proxy queue (simple version supported for testing purposes)
 unset ROCP_PROXY_QUEUE
 # ROC Profiler metrics definition
 export ROCP_METRICS=$TLIB_PATH/metrics.xml
+echo $ROCP_METRICS
+export ROCP_METRICS=/opt/rocm-5.4.0/lib/rocprofiler/metrics.xml
+echo $ROCP_METRICS
+
 # Disable AQL-profile read API
 export AQLPROFILE_READ_API=0
 # ROC Profiler package path

@@ -520,6 +520,7 @@ class InterceptQueue {
     }
     callbacks_ = callbacks;
     callback_data_ = data;
+    printf("开始进入dispatch\n");
     Start();
   }
 
@@ -528,7 +529,7 @@ class InterceptQueue {
     callbacks_ = {};
     Stop();
   }
-
+  //这里是真正的调用的开始！！！
   static inline void Start() { dispatch_callback_.store(callbacks_.dispatch, std::memory_order_release); }
   static inline void Stop() { dispatch_callback_.store(NULL, std::memory_order_relaxed); }
 

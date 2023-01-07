@@ -35,6 +35,7 @@ class HsaQueue : public Queue {
   HsaQueue(const util::AgentInfo* agent_info, hsa_queue_t* queue) : queue_(queue) {}
 
   void Submit(const packet_t* packet) {
+    printf("Submit111\n");
     rocprofiler::util::HsaRsrcFactory::Instance().Submit(queue_, packet);
   }
 
